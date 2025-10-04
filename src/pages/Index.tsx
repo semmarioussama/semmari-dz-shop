@@ -1,5 +1,7 @@
 import Header from "@/components/Header";
 import ProductForm from "@/components/ProductForm";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import TrustBadges from "@/components/TrustBadges";
 import productImage from "@/assets/product-main.jpg";
 
 const Index = () => {
@@ -12,6 +14,7 @@ const Index = () => {
           {/* Order Form - Left Side */}
           <div className="order-2 md:order-1">
             <ProductForm />
+            <TrustBadges />
           </div>
 
           {/* Product Info - Right Side */}
@@ -28,7 +31,7 @@ const Index = () => {
                     className="w-full h-auto"
                   />
                   <div className="absolute top-4 left-4 bg-accent text-accent-foreground px-3 py-1 rounded-lg text-sm font-bold">
-                    حزام السباحة اللي راح يهنيك 😍
+                    السماعة اللي راح تهنيك 😍
                   </div>
                 </div>
               </div>
@@ -90,6 +93,8 @@ const Index = () => {
           </div>
         </div>
       </main>
+      
+      <WhatsAppButton />
     </div>
   );
 };
