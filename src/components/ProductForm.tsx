@@ -28,7 +28,7 @@ const ProductForm = () => {
     (state) => state.id === selectedState
   );
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.fullName || !formData.phone || !selectedState || !formData.district) {
@@ -40,10 +40,44 @@ const ProductForm = () => {
       return;
     }
 
-    toast({
-      title: "تم إرسال الطلب بنجاح! 👍",
-      description: "سنتصل بك قريباً لتأكيد الطلب",
-    });
+    try {
+      const selectedStateData = algerianStates.find(
+        (state) => state.id === selectedState
+      );
+      const selectedDistrictData = selectedStateData?.districts.find(
+        (district) => district.id === formData.district
+      );
+
+      const orderData = {
+        fullName: formData.fullName,
+        phone: formData.phone,
+        state: selectedStateData?.name,
+        district: selectedDistrictData?.name,
+        option: formData.option,
+        quantity: quantity,
+        timestamp: new Date().toISOString(),
+      };
+
+      await fetch("https://n8n-n8n.2ufl9p.easypanel.host/webhook-test/05f1b4ac-24ca-444c-93b8-c39145cf9930", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      toast({
+        title: "تم إرسال الطلب بنجاح! 👍",
+        description: "سنتصل بك قريباً لتأكيد الطلب",
+      });
+    } catch (error) {
+      console.error("Error sending order:", error);
+      toast({
+        title: "خطأ في الإرسال",
+        description: "حدث خطأ أثناء إرسال الطلب. الرجاء المحاولة مرة أخرى",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
