@@ -14,6 +14,7 @@ import { Minus, Plus, User, Phone, Loader2 } from "lucide-react";
 import { algerianStates } from "@/data/algerianLocations";
 import { toast } from "@/hooks/use-toast";
 import { z } from "zod";
+import SuccessModal from "@/components/SuccessModal";
 
 // Algerian phone validation schema
 const phoneSchema = z.string()
@@ -30,6 +31,8 @@ const ProductForm = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedState, setSelectedState] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [orderReference, setOrderReference] = useState("");
   const [formData, setFormData] = useState({
     fullName: "",
     phone: "",
@@ -109,10 +112,9 @@ const ProductForm = () => {
       setSelectedState("");
       setQuantity(1);
 
-      toast({
-        title: "تم إرسال الطلب بنجاح! 🎉",
-        description: `رقم الطلب: ${orderRef}\nسنتصل بك قريباً لتأكيد الطلب`,
-      });
+      // Show success modal
+      setOrderReference(orderRef);
+      setShowSuccessModal(true);
     } catch (error) {
       console.error("Error sending order:", error);
       toast({
@@ -126,7 +128,13 @@ const ProductForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <>
+      <SuccessModal 
+        isOpen={showSuccessModal}
+        orderRef={orderReference}
+        onClose={() => setShowSuccessModal(false)}
+      />
+      <form onSubmit={handleSubmit} className="space-y-6">
       <div className="bg-card border-2 border-primary/10 rounded-lg p-6">
         <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
           👇 أضف معلوماتك في الأسفل للطلب
@@ -290,6 +298,7 @@ const ProductForm = () => {
         </div>
       </div>
     </form>
+    </>
   );
 };
 

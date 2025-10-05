@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import ProductForm from "@/components/ProductForm";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import TrustBadges from "@/components/TrustBadges";
+import ProductCarousel from "@/components/ProductCarousel";
 import productImage from "@/assets/product-main.jpg";
 
 const Index = () => {
@@ -20,21 +21,7 @@ const Index = () => {
           {/* Product Info - Right Side */}
           <div className="order-1 md:order-2">
             <div className="sticky top-8">
-              <div className="relative">
-                <div className="absolute top-4 right-4 bg-sale-badge text-white px-3 py-1 rounded-lg text-sm font-bold z-10">
-                  تخفيض!
-                </div>
-                <div className="bg-card rounded-lg overflow-hidden border">
-                  <img
-                    src={productImage}
-                    alt="سماعة بلوتوث لاسلكية"
-                    className="w-full h-auto"
-                  />
-                  <div className="absolute top-4 left-4 bg-accent text-accent-foreground px-3 py-1 rounded-lg text-sm font-bold">
-                    السماعة اللي راح تهنيك 😍
-                  </div>
-                </div>
-              </div>
+              <ProductCarousel />
 
               <div className="mt-6 space-y-4">
                 <h1 className="text-3xl font-bold text-foreground">
