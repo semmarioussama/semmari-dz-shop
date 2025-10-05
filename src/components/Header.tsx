@@ -1,11 +1,7 @@
 import logo from "@/assets/logo.png";
-
 const Header = () => {
-  return (
-    <>
-      <div className="bg-primary text-primary-foreground py-2 text-center text-sm">
-        توصيل سريع لجميع الولايات
-      </div>
+  return <>
+      
       <header className="bg-card border-b">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-center">
@@ -13,8 +9,6 @@ const Header = () => {
           </div>
         </div>
       </header>
-    </>
-  );
+    </>;
 };
-
 export default Header;
