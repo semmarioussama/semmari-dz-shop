@@ -216,11 +216,11 @@ const ProductForm = () => {
             </div>
           </div>
 
-          <Button type="submit" className="w-full text-lg py-6" size="lg" disabled={isSubmitting}>
+          <Button type="submit" size="lg" disabled={isSubmitting} className="w-full text-lg py-6 text-slate-50 text-right bg-lime-700 hover:bg-lime-600 rounded-lg">
             {isSubmitting ? <>
                 <Loader2 className="ml-2 h-5 w-5 animate-spin" />
                 جاري الإرسال...
-              </> : "اضغط هنا لتأكيد الطلب"}
+              </> : "اضغر هنا لتاكيد الطلب 👈"}
           </Button>
         </div>
       </div>
