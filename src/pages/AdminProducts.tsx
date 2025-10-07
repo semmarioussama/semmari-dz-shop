@@ -5,9 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Pencil, Trash2, Loader2 } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { ProductEditor } from "@/components/ProductEditor";
 
 interface Product {
   id: string;
@@ -24,13 +22,7 @@ export default function AdminProducts() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    current_price: "",
-    original_price: "",
-  });
+  const [editingProductId, setEditingProductId] = useState<string | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -57,45 +49,6 @@ export default function AdminProducts() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    try {
-      const productData = {
-        title: formData.title,
-        description: formData.description,
-        current_price: parseFloat(formData.current_price),
-        original_price: parseFloat(formData.original_price),
-      };
-
-      if (editingProduct) {
-        const { error } = await supabase
-          .from("products")
-          .update(productData)
-          .eq("id", editingProduct.id);
-
-        if (error) throw error;
-        toast({ title: "تم تحديث المنتج بنجاح" });
-      } else {
-        const { error } = await supabase
-          .from("products")
-          .insert(productData);
-
-        if (error) throw error;
-        toast({ title: "تم إضافة المنتج بنجاح" });
-      }
-
-      setDialogOpen(false);
-      resetForm();
-      fetchProducts();
-    } catch (error: any) {
-      toast({
-        title: "خطأ في حفظ المنتج",
-        description: error.message,
-        variant: "destructive",
-      });
-    }
-  };
 
   const handleDelete = async (id: string) => {
     if (!confirm("هل أنت متأكد من حذف هذا المنتج؟")) return;
@@ -118,25 +71,14 @@ export default function AdminProducts() {
     }
   };
 
-  const openEditDialog = (product: Product) => {
-    setEditingProduct(product);
-    setFormData({
-      title: product.title,
-      description: product.description || "",
-      current_price: product.current_price.toString(),
-      original_price: product.original_price.toString(),
-    });
+  const openEditDialog = (productId: string) => {
+    setEditingProductId(productId);
     setDialogOpen(true);
   };
 
-  const resetForm = () => {
-    setEditingProduct(null);
-    setFormData({
-      title: "",
-      description: "",
-      current_price: "",
-      original_price: "",
-    });
+  const openAddDialog = () => {
+    setEditingProductId(null);
+    setDialogOpen(true);
   };
 
   if (loading) {
@@ -151,69 +93,24 @@ export default function AdminProducts() {
     <div>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">إدارة المنتجات</h1>
-        <Dialog open={dialogOpen} onOpenChange={(open) => {
-          setDialogOpen(open);
-          if (!open) resetForm();
-        }}>
+        <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger asChild>
-            <Button>
+            <Button onClick={openAddDialog}>
               <Plus className="ml-2 h-4 w-4" />
               إضافة منتج جديد
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-2xl">
+          <DialogContent className="max-w-3xl max-h-[90vh]">
             <DialogHeader>
               <DialogTitle>
-                {editingProduct ? "تعديل المنتج" : "إضافة منتج جديد"}
+                {editingProductId ? "تعديل المنتج" : "إضافة منتج جديد"}
               </DialogTitle>
             </DialogHeader>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="title">عنوان المنتج</Label>
-                <Input
-                  id="title"
-                  value={formData.title}
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="description">الوصف</Label>
-                <Textarea
-                  id="description"
-                  value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  rows={4}
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="current_price">السعر الحالي (دج)</Label>
-                  <Input
-                    id="current_price"
-                    type="number"
-                    step="0.01"
-                    value={formData.current_price}
-                    onChange={(e) => setFormData({ ...formData, current_price: e.target.value })}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="original_price">السعر الأصلي (دج)</Label>
-                  <Input
-                    id="original_price"
-                    type="number"
-                    step="0.01"
-                    value={formData.original_price}
-                    onChange={(e) => setFormData({ ...formData, original_price: e.target.value })}
-                    required
-                  />
-                </div>
-              </div>
-              <Button type="submit" className="w-full">
-                {editingProduct ? "تحديث المنتج" : "إضافة المنتج"}
-              </Button>
-            </form>
+            <ProductEditor
+              productId={editingProductId}
+              onClose={() => setDialogOpen(false)}
+              onSuccess={fetchProducts}
+            />
           </DialogContent>
         </Dialog>
       </div>
@@ -235,7 +132,7 @@ export default function AdminProducts() {
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => openEditDialog(product)}
+                      onClick={() => openEditDialog(product.id)}
                     >
                       <Pencil className="h-4 w-4" />
                     </Button>
