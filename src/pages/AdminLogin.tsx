@@ -33,7 +33,7 @@ export default function AdminLogin() {
       toast({
         title: "تم تسجيل الدخول بنجاح",
       });
-      navigate("/admin/dashboard");
+      navigate("/admin/products");
     }
   };
 
