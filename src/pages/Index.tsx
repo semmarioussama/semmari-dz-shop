@@ -4,6 +4,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import TrustBadges from "@/components/TrustBadges";
 import ProductCarousel from "@/components/ProductCarousel";
 import productImage from "@/assets/product-main.jpg";
+import productDetails from "@/assets/product-details.jpg";
 
 const Index = () => {
   return (
@@ -15,6 +16,11 @@ const Index = () => {
           {/* Order Form - Left Side */}
           <div className="order-2 md:order-1">
             <ProductForm />
+            <img 
+              src={productDetails} 
+              alt="تفاصيل المنتج" 
+              className="w-full rounded-lg mt-6"
+            />
             <TrustBadges />
           </div>
 
