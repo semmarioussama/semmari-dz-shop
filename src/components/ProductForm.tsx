@@ -9,6 +9,7 @@ import { algerianStates } from "@/data/algerianLocations";
 import { toast } from "@/hooks/use-toast";
 import { z } from "zod";
 import SuccessModal from "@/components/SuccessModal";
+import { supabase } from "@/integrations/supabase/client";
 
 // Algerian phone validation schema
 const phoneSchema = z.string().regex(/^(05|06|07)\d{8}$/, "رقم الهاتف يجب أن يبدأ بـ 05، 06، أو 07 ويحتوي على 10 أرقام");
@@ -58,26 +59,25 @@ const ProductForm = () => {
       const selectedStateData = algerianStates.find(state => state.id === selectedState);
       const selectedDistrictData = selectedStateData?.districts.find(district => district.id === formData.district);
 
-      // Generate order reference
-      const orderRef = `ORD-${Date.now().toString(36).toUpperCase()}`;
-      const orderData = {
-        orderReference: orderRef,
-        fullName: validation.data.fullName,
-        phone: validation.data.phone,
-        state: selectedStateData?.name,
-        district: selectedDistrictData?.name,
-        option: formData.option,
-        quantity: quantity,
-        timestamp: new Date().toISOString()
-      };
-      const response = await fetch("https://n8n-n8n.2ufl9p.easypanel.host/webhook-test/05f1b4ac-24ca-444c-93b8-c39145cf9930", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(orderData)
+      // Call secure Edge Function with server-side validation
+      const { data, error } = await supabase.functions.invoke('submit-order', {
+        body: {
+          fullName: validation.data.fullName,
+          phone: validation.data.phone,
+          state: selectedStateData?.name,
+          district: selectedDistrictData?.name,
+          selectedOption: formData.option,
+          quantity: quantity
+        }
       });
-      if (!response.ok) throw new Error("Network response was not ok");
+
+      if (error) {
+        throw new Error(error.message || 'Failed to submit order');
+      }
+
+      if (!data?.success) {
+        throw new Error(data?.error || 'Failed to submit order');
+      }
 
       // Reset form
       setFormData({
@@ -89,8 +89,8 @@ const ProductForm = () => {
       setSelectedState("");
       setQuantity(1);
 
-      // Show success modal
-      setOrderReference(orderRef);
+      // Show success modal with order reference from server
+      setOrderReference(data.orderReference);
       setShowSuccessModal(true);
     } catch (error) {
       console.error("Error sending order:", error);
