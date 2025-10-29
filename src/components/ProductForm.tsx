@@ -60,7 +60,10 @@ const ProductForm = () => {
       const selectedDistrictData = selectedStateData?.districts.find(district => district.id === formData.district);
 
       // Call secure Edge Function with server-side validation
-      const { data, error } = await supabase.functions.invoke('submit-order', {
+      const {
+        data,
+        error
+      } = await supabase.functions.invoke('submit-order', {
         body: {
           fullName: validation.data.fullName,
           phone: validation.data.phone,
@@ -70,11 +73,9 @@ const ProductForm = () => {
           quantity: quantity
         }
       });
-
       if (error) {
         throw new Error(error.message || 'Failed to submit order');
       }
-
       if (!data?.success) {
         throw new Error(data?.error || 'Failed to submit order');
       }
@@ -186,20 +187,7 @@ const ProductForm = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between p-3 border rounded-lg hover:border-primary transition-colors bg-amber-200">
-                <div className="flex items-center gap-3">
-                  <RadioGroupItem value="option2" id="option2" />
-                  <Label htmlFor="option2" className="cursor-pointer font-medium">
-                    طلب 02
-                  </Label>
-                </div>
-                <div className="text-left">
-                  <span className="font-bold text-primary">4.700 د.ج</span>
-                  <span className="text-sm text-muted-foreground line-through mr-2">
-                    7.000 د.ج
-                  </span>
-                </div>
-              </div>
+              
             </RadioGroup>
           </div>
 
