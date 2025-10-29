@@ -10,118 +10,62 @@ export interface State {
 }
 
 export const algerianStates: State[] = [
-  {
-    id: "01",
-    name: "أدرار",
-    districts: [
-      { id: "01-01", name: "أدرار" },
-      { id: "01-02", name: "تامنطيط" },
-      { id: "01-03", name: "شروين" },
-      { id: "01-04", name: "رقان" },
-      { id: "01-05", name: "تيميمون" },
-    ]
-  },
-  {
-    id: "16",
-    name: "الجزائر",
-    districts: [
-      { id: "16-01", name: "سيدي امحمد" },
-      { id: "16-02", name: "المدنية" },
-      { id: "16-03", name: "الحراش" },
-      { id: "16-04", name: "باب الوادي" },
-      { id: "16-05", name: "بئر مراد رايس" },
-      { id: "16-06", name: "الدار البيضاء" },
-      { id: "16-07", name: "حسين داي" },
-      { id: "16-08", name: "بئر توتة" },
-      { id: "16-09", name: "بوزريعة" },
-    ]
-  },
-  {
-    id: "09",
-    name: "البليدة",
-    districts: [
-      { id: "09-01", name: "البليدة" },
-      { id: "09-02", name: "الشريعة" },
-      { id: "09-03", name: "بوفاريك" },
-      { id: "09-04", name: "الأربعاء" },
-      { id: "09-05", name: "العفرون" },
-    ]
-  },
-  {
-    id: "31",
-    name: "وهران",
-    districts: [
-      { id: "31-01", name: "وهران" },
-      { id: "31-02", name: "السانية" },
-      { id: "31-03", name: "بئر الجير" },
-      { id: "31-04", name: "عين الترك" },
-      { id: "31-05", name: "مرسى الحجاج" },
-    ]
-  },
-  {
-    id: "25",
-    name: "قسنطينة",
-    districts: [
-      { id: "25-01", name: "قسنطينة" },
-      { id: "25-02", name: "زيغود يوسف" },
-      { id: "25-03", name: "الخروب" },
-      { id: "25-04", name: "حامة بوزيان" },
-      { id: "25-05", name: "ابن باديس" },
-    ]
-  },
-  {
-    id: "19",
-    name: "سطيف",
-    districts: [
-      { id: "19-01", name: "سطيف" },
-      { id: "19-02", name: "العلمة" },
-      { id: "19-03", name: "بني ورتيلان" },
-      { id: "19-04", name: "عين ولمان" },
-      { id: "19-05", name: "بوقاع" },
-    ]
-  },
-  {
-    id: "06",
-    name: "بجاية",
-    districts: [
-      { id: "06-01", name: "بجاية" },
-      { id: "06-02", name: "أقبو" },
-      { id: "06-03", name: "تيشي" },
-      { id: "06-04", name: "أمزيان" },
-      { id: "06-05", name: "سيدي عيش" },
-    ]
-  },
-  {
-    id: "10",
-    name: "البويرة",
-    districts: [
-      { id: "10-01", name: "البويرة" },
-      { id: "10-02", name: "سور الغزلان" },
-      { id: "10-03", name: "الأخضرية" },
-      { id: "10-04", name: "عين بسام" },
-      { id: "10-05", name: "برج أخريص" },
-    ]
-  },
-  {
-    id: "15",
-    name: "تيزي وزو",
-    districts: [
-      { id: "15-01", name: "تيزي وزو" },
-      { id: "15-02", name: "عزازقة" },
-      { id: "15-03", name: "تيغزيرت" },
-      { id: "15-04", name: "الأربعاء نايت إيراثن" },
-      { id: "15-05", name: "درقينة" },
-    ]
-  },
-  {
-    id: "13",
-    name: "تلمسان",
-    districts: [
-      { id: "13-01", name: "تلمسان" },
-      { id: "13-02", name: "مغنية" },
-      { id: "13-03", name: "ندرومة" },
-      { id: "13-04", name: "رمشي" },
-      { id: "13-05", name: "الغزوات" },
-    ]
-  },
+  { id: "01", name: "Adrar", districts: [{ id: "01-01", name: "Adrar" }] },
+  { id: "02", name: "Chlef", districts: [{ id: "02-01", name: "Chlef" }] },
+  { id: "03", name: "Laghouat", districts: [{ id: "03-01", name: "Laghouat" }] },
+  { id: "04", name: "Oum El Bouaghi", districts: [{ id: "04-01", name: "Oum El Bouaghi" }] },
+  { id: "05", name: "Batna", districts: [{ id: "05-01", name: "Batna" }] },
+  { id: "06", name: "Béjaïa", districts: [{ id: "06-01", name: "Béjaïa" }] },
+  { id: "07", name: "Biskra", districts: [{ id: "07-01", name: "Biskra" }] },
+  { id: "08", name: "Béchar", districts: [{ id: "08-01", name: "Béchar" }] },
+  { id: "09", name: "Blida", districts: [{ id: "09-01", name: "Blida" }] },
+  { id: "10", name: "Bouira", districts: [{ id: "10-01", name: "Bouira" }] },
+  { id: "11", name: "Tamanrasset", districts: [{ id: "11-01", name: "Tamanrasset" }] },
+  { id: "12", name: "Tébessa", districts: [{ id: "12-01", name: "Tébessa" }] },
+  { id: "13", name: "Tlemcen", districts: [{ id: "13-01", name: "Tlemcen" }] },
+  { id: "14", name: "Tiaret", districts: [{ id: "14-01", name: "Tiaret" }] },
+  { id: "15", name: "Tizi Ouzou", districts: [{ id: "15-01", name: "Tizi Ouzou" }] },
+  { id: "16", name: "Alger", districts: [{ id: "16-01", name: "Alger" }] },
+  { id: "17", name: "Djelfa", districts: [{ id: "17-01", name: "Djelfa" }] },
+  { id: "18", name: "Jijel", districts: [{ id: "18-01", name: "Jijel" }] },
+  { id: "19", name: "Sétif", districts: [{ id: "19-01", name: "Sétif" }] },
+  { id: "20", name: "Saïda", districts: [{ id: "20-01", name: "Saïda" }] },
+  { id: "21", name: "Skikda", districts: [{ id: "21-01", name: "Skikda" }] },
+  { id: "22", name: "Sidi Bel Abbès", districts: [{ id: "22-01", name: "Sidi Bel Abbès" }] },
+  { id: "23", name: "Annaba", districts: [{ id: "23-01", name: "Annaba" }] },
+  { id: "24", name: "Guelma", districts: [{ id: "24-01", name: "Guelma" }] },
+  { id: "25", name: "Constantine", districts: [{ id: "25-01", name: "Constantine" }] },
+  { id: "26", name: "Médéa", districts: [{ id: "26-01", name: "Médéa" }] },
+  { id: "27", name: "Mostaganem", districts: [{ id: "27-01", name: "Mostaganem" }] },
+  { id: "28", name: "M'Sila", districts: [{ id: "28-01", name: "M'Sila" }] },
+  { id: "29", name: "Mascara", districts: [{ id: "29-01", name: "Mascara" }] },
+  { id: "30", name: "Ouargla", districts: [{ id: "30-01", name: "Ouargla" }] },
+  { id: "31", name: "Oran", districts: [{ id: "31-01", name: "Oran" }] },
+  { id: "32", name: "El Bayadh", districts: [{ id: "32-01", name: "El Bayadh" }] },
+  { id: "33", name: "Illizi", districts: [{ id: "33-01", name: "Illizi" }] },
+  { id: "34", name: "Bordj Bou Arréridj", districts: [{ id: "34-01", name: "Bordj Bou Arréridj" }] },
+  { id: "35", name: "Boumerdès", districts: [{ id: "35-01", name: "Boumerdès" }] },
+  { id: "36", name: "El Tarf", districts: [{ id: "36-01", name: "El Tarf" }] },
+  { id: "37", name: "Tindouf", districts: [{ id: "37-01", name: "Tindouf" }] },
+  { id: "38", name: "Tissemsilt", districts: [{ id: "38-01", name: "Tissemsilt" }] },
+  { id: "39", name: "El Oued", districts: [{ id: "39-01", name: "El Oued" }] },
+  { id: "40", name: "Khenchela", districts: [{ id: "40-01", name: "Khenchela" }] },
+  { id: "41", name: "Souk Ahras", districts: [{ id: "41-01", name: "Souk Ahras" }] },
+  { id: "42", name: "Tipaza", districts: [{ id: "42-01", name: "Tipaza" }] },
+  { id: "43", name: "Mila", districts: [{ id: "43-01", name: "Mila" }] },
+  { id: "44", name: "Aïn Defla", districts: [{ id: "44-01", name: "Aïn Defla" }] },
+  { id: "45", name: "Naâma", districts: [{ id: "45-01", name: "Naâma" }] },
+  { id: "46", name: "Aïn Témouchent", districts: [{ id: "46-01", name: "Aïn Témouchent" }] },
+  { id: "47", name: "Ghardaïa", districts: [{ id: "47-01", name: "Ghardaïa" }] },
+  { id: "48", name: "Relizane", districts: [{ id: "48-01", name: "Relizane" }] },
+  { id: "49", name: "El M'Ghair", districts: [{ id: "49-01", name: "El M'Ghair" }] },
+  { id: "50", name: "El Menia", districts: [{ id: "50-01", name: "El Menia" }] },
+  { id: "51", name: "Ouled Djellal", districts: [{ id: "51-01", name: "Ouled Djellal" }] },
+  { id: "52", name: "Bordj Badji Mokhtar", districts: [{ id: "52-01", name: "Bordj Badji Mokhtar" }] },
+  { id: "53", name: "Béni Abbès", districts: [{ id: "53-01", name: "Béni Abbès" }] },
+  { id: "54", name: "Timimoun", districts: [{ id: "54-01", name: "Timimoun" }] },
+  { id: "55", name: "Touggourt", districts: [{ id: "55-01", name: "Touggourt" }] },
+  { id: "56", name: "Djanet", districts: [{ id: "56-01", name: "Djanet" }] },
+  { id: "57", name: "In Salah", districts: [{ id: "57-01", name: "In Salah" }] },
+  { id: "58", name: "In Guezzam", districts: [{ id: "58-01", name: "In Guezzam" }] },
 ];
