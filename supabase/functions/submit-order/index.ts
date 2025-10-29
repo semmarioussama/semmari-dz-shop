@@ -185,25 +185,35 @@ serve(async (req) => {
 
     console.log('Order stored successfully:', orderReference);
 
-    // Send to webhook asynchronously (don't wait for response)
+    // Send to webhook asynchronously
     const webhookUrl = 'https://n8n-n8n.2ufl9p.easypanel.host/webhook-test/555c65e3-5b29-4dad-8a05-dbea3e9909a9';
+    const webhookPayload = {
+      orderReference,
+      fullName: sanitizedData.fullName,
+      phone: sanitizedData.phone,
+      state: sanitizedData.state,
+      stateId: sanitizedData.stateId,
+      district: sanitizedData.district,
+      selectedOption: sanitizedData.selectedOption,
+      quantity: sanitizedData.quantity,
+      timestamp: new Date().toISOString()
+    };
+
+    console.log('Sending to webhook:', webhookUrl);
+    console.log('Webhook payload:', JSON.stringify(webhookPayload));
     
+    // Don't wait for webhook response to avoid blocking the user
     fetch(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        orderReference,
-        fullName: sanitizedData.fullName,
-        phone: sanitizedData.phone,
-        state: sanitizedData.state,
-        stateId: sanitizedData.stateId,
-        district: sanitizedData.district,
-        selectedOption: sanitizedData.selectedOption,
-        quantity: sanitizedData.quantity,
-        timestamp: new Date().toISOString()
-      })
+      body: JSON.stringify(webhookPayload)
+    }).then(response => {
+      console.log('Webhook response status:', response.status);
+      return response.text();
+    }).then(body => {
+      console.log('Webhook response body:', body);
     }).catch(error => {
-      console.error('Webhook notification failed (non-critical):', error);
+      console.error('Webhook call failed:', error.message);
     });
 
     // Return success response immediately
