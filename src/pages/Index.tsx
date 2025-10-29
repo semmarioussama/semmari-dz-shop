@@ -5,10 +5,8 @@ import TrustBadges from "@/components/TrustBadges";
 import ProductCarousel from "@/components/ProductCarousel";
 import productImage from "@/assets/product-main.jpg";
 import productDetails from "@/assets/product-details.jpg";
-
 const Index = () => {
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <Header />
 
       <main className="container mx-auto px-4 py-8">
@@ -16,11 +14,7 @@ const Index = () => {
           {/* Order Form - Left Side */}
           <div className="order-2 md:order-1">
             <ProductForm />
-            <img 
-              src={productDetails} 
-              alt="تفاصيل المنتج" 
-              className="w-full rounded-lg mt-6"
-            />
+            <img src={productDetails} alt="تفاصيل المنتج" className="w-full rounded-lg mt-6" />
             <TrustBadges />
           </div>
 
@@ -30,9 +24,7 @@ const Index = () => {
               <ProductCarousel />
 
               <div className="mt-6 space-y-4">
-                <h1 className="text-3xl font-bold text-foreground">
-                  سماعة بلوتوث لاسلكية: صوت نقي وجودة عالية
-                </h1>
+                <h1 className="text-3xl font-bold text-foreground">سماعة بلوتوث لاسلكية: صوت نقي وجودة عالية</h1>
 
                 <div className="flex items-center gap-4">
                   <span className="text-3xl font-bold text-primary">
@@ -88,8 +80,6 @@ const Index = () => {
       </main>
       
       <WhatsAppButton />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
