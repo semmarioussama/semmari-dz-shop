@@ -19,6 +19,7 @@ interface SanitizedData {
   fullName: string;
   phone: string;
   state: string;
+  stateId: string;
   district: string;
   selectedOption: string;
   quantity: number;
@@ -50,6 +51,11 @@ function validateAndSanitizeInput(data: any):
     errors.push('State is required');
   }
 
+  // Validate state ID
+  if (!data.stateId || typeof data.stateId !== 'string' || data.stateId.trim().length === 0) {
+    errors.push('State ID is required');
+  }
+
   // Validate district
   if (!data.district || typeof data.district !== 'string' || data.district.trim().length === 0) {
     errors.push('District is required');
@@ -78,6 +84,7 @@ function validateAndSanitizeInput(data: any):
       fullName: data.fullName.trim().slice(0, 100),
       phone: data.phone.trim(),
       state: data.state.trim().slice(0, 50),
+      stateId: data.stateId.trim().slice(0, 10),
       district: data.district.trim().slice(0, 100),
       selectedOption: data.selectedOption.trim(),
       quantity: Math.floor(Math.min(Math.max(data.quantity, 1), 100)),
@@ -179,7 +186,7 @@ serve(async (req) => {
     console.log('Order stored successfully:', orderReference);
 
     // Send to webhook asynchronously (don't wait for response)
-    const webhookUrl = 'https://n8n-n8n.2ufl9p.easypanel.host/webhook-test/05f1b4ac-24ca-444c-93b8-c39145cf9930';
+    const webhookUrl = 'https://n8n-n8n.2ufl9p.easypanel.host/webhook-test/555c65e3-5b29-4dad-8a05-dbea3e9909a9';
     
     fetch(webhookUrl, {
       method: 'POST',
@@ -189,6 +196,7 @@ serve(async (req) => {
         fullName: sanitizedData.fullName,
         phone: sanitizedData.phone,
         state: sanitizedData.state,
+        stateId: sanitizedData.stateId,
         district: sanitizedData.district,
         selectedOption: sanitizedData.selectedOption,
         quantity: sanitizedData.quantity,

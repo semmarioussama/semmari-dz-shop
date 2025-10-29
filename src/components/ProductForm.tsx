@@ -68,6 +68,7 @@ const ProductForm = () => {
           fullName: validation.data.fullName,
           phone: validation.data.phone,
           state: selectedStateData?.name,
+          stateId: selectedState,
           district: selectedDistrictData?.name,
           selectedOption: formData.option,
           quantity: quantity
