@@ -52,12 +52,13 @@ const ProductForm = () => {
         const selectedDistrictData = selectedStateData?.districts.find(district => district.id === formData.district);
         
         const abandonedData = {
-          fullName: formData.fullName,
-          phone: formData.phone,
-          state: selectedStateData?.name || "",
-          stateId: selectedState,
-          district: selectedDistrictData?.name || "",
-          selectedOption: formData.option,
+          fullName: formData.fullName || null,
+          phone: formData.phone || null,
+          state: selectedStateData?.name || null,
+          stateId: selectedState || null,
+          district: selectedDistrictData?.name || null,
+          districtId: formData.district || null,
+          selectedOption: formData.option || null,
           quantity: quantity,
           abandonedAt: new Date().toISOString()
         };
