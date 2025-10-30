@@ -234,20 +234,7 @@ const ProductForm = () => {
               ...formData,
               option: value
             })} className="space-y-3">
-              <div className="flex items-center justify-between p-3 border-2 border-primary rounded-lg bg-amber-200">
-                <div className="flex items-center gap-3">
-                  
-                  <Label htmlFor="option1" className="cursor-pointer font-medium">
-                    طلب 01
-                  </Label>
-                </div>
-                <div className="text-left">
-                  <span className="font-bold text-primary">2.400 د.ج</span>
-                  <span className="text-sm text-muted-foreground line-through mr-2">
-                    3.500 د.ج
-                  </span>
-                </div>
-              </div>
+              
 
               
             </RadioGroup>
