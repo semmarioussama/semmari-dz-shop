@@ -31,7 +31,6 @@ const ProductForm = () => {
     district: "",
     option: "option1"
   });
-  
   const formSubmittedRef = useRef(false);
   const formStartedRef = useRef(false);
   const abandonedTimerRef = useRef<number | null>(null);
@@ -51,9 +50,7 @@ const ProductForm = () => {
       if (formStartedRef.current && !formSubmittedRef.current) {
         const selectedStateData = algerianStates.find(state => state.id === selectedState);
         const selectedDistrictData = selectedStateData?.districts.find(district => district.id === formData.district);
-        
         const abandonedData = {
-          productName: "Visseuse Powerblu (Brushless)",
           fullName: formData.fullName || null,
           phone: formData.phone || null,
           state: selectedStateData?.name || null,
@@ -70,7 +67,6 @@ const ProductForm = () => {
         navigator.sendBeacon(webhookUrl, JSON.stringify(abandonedData));
       }
     };
-
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'hidden') {
         // Start 1-minute timer when user leaves
@@ -85,9 +81,7 @@ const ProductForm = () => {
         }
       }
     };
-
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       // Clear timer on cleanup
@@ -129,7 +123,6 @@ const ProductForm = () => {
         error
       } = await supabase.functions.invoke('submit-order', {
         body: {
-          productName: "Visseuse Powerblu (Brushless)",
           fullName: validation.data.fullName,
           phone: validation.data.phone,
           state: selectedStateData?.name,
@@ -243,7 +236,7 @@ const ProductForm = () => {
             })} className="space-y-3">
               <div className="flex items-center justify-between p-3 border-2 border-primary rounded-lg bg-amber-200">
                 <div className="flex items-center gap-3">
-                  <RadioGroupItem value="option1" id="option1" />
+                  
                   <Label htmlFor="option1" className="cursor-pointer font-medium">
                     طلب 01
                   </Label>
