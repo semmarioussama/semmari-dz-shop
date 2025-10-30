@@ -19,7 +19,12 @@ const formSchema = z.object({
   district: z.string().min(1, "يرجى اختيار البلدية"),
   option: z.string()
 });
-const ProductForm = () => {
+
+interface ProductFormProps {
+  productName: string;
+}
+
+const ProductForm = ({ productName }: ProductFormProps) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedState, setSelectedState] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -123,6 +128,7 @@ const ProductForm = () => {
         error
       } = await supabase.functions.invoke('submit-order', {
         body: {
+          productName: productName,
           fullName: validation.data.fullName,
           phone: validation.data.phone,
           state: selectedStateData?.name,

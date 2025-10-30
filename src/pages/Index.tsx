@@ -13,7 +13,7 @@ const Index = () => {
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Order Form - Left Side */}
           <div className="order-2 md:order-1">
-            <ProductForm />
+            <ProductForm productName="سماعة بلوتوث لاسلكية: صوت نقي وجودة عالية" />
             <img src={productDetails} alt="تفاصيل المنتج" className="w-full rounded-lg mt-6" />
             
           </div>
