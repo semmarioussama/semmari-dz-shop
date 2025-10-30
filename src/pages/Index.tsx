@@ -24,23 +24,23 @@ const Index = () => {
               <ProductCarousel />
 
               <div className="mt-6 space-y-4">
-                <h1 className="text-3xl font-bold text-foreground">سماعة بلوتوث لاسلكية: صوت نقي وجودة عالية</h1>
+                <h1 className="text-4xl font-bold text-foreground">سماعة بلوتوث لاسلكية: صوت نقي وجودة عالية</h1>
 
                 <div className="flex items-center gap-4">
-                  <span className="text-3xl font-bold text-primary">
+                  <span className="text-4xl font-bold text-primary">
                     2.400 د.ج
                   </span>
-                  <span className="text-xl text-muted-foreground line-through">
+                  <span className="text-2xl text-muted-foreground line-through">
                     3.500 د.ج
                   </span>
-                  <span className="bg-sale-badge text-white px-3 py-1 rounded-lg text-sm font-bold">
+                  <span className="bg-sale-badge text-white px-3 py-1 rounded-lg text-base font-bold">
                     31%
                   </span>
                 </div>
 
                 <div className="bg-card border rounded-lg p-6 space-y-3">
-                  <h3 className="font-bold text-lg mb-3">مواصفات المنتج:</h3>
-                  <ul className="space-y-2 text-foreground">
+                  <h3 className="font-bold text-xl mb-3">مواصفات المنتج:</h3>
+                  <ul className="space-y-2 text-foreground text-base">
                     <li className="flex items-start gap-2">
                       <span className="text-accent">✓</span>
                       <span>تقنية بلوتوث 5.0 للاتصال السريع والمستقر</span>
@@ -69,7 +69,7 @@ const Index = () => {
                 </div>
 
                 <div className="bg-primary/10 border-r-4 border-primary rounded-lg p-4">
-                  <p className="text-sm">
+                  <p className="text-base">
                     <strong>ملاحظة:</strong> التوصيل مجاني لجميع الولايات. الدفع عند الاستلام.
                   </p>
                 </div>
