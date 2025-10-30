@@ -65,7 +65,7 @@ const ProductForm = () => {
         };
 
         // Use sendBeacon for reliable delivery
-        const webhookUrl = 'https://n8n-n8n.2ufl9p.easypanel.host/webhook-test/caca736d-f7ae-48e8-9a98-5d05d1e06822';
+        const webhookUrl = 'https://n8n-n8n.2ufl9p.easypanel.host/webhook-test/f0662916-6542-4ddb-a97b-fcd944ee5f19';
         navigator.sendBeacon(webhookUrl, JSON.stringify(abandonedData));
       }
     };
