@@ -144,7 +144,7 @@ const ProductForm = () => {
               </SelectTrigger>
               <SelectContent>
                 {algerianStates.map(state => <SelectItem key={state.id} value={state.id}>
-                    {state.name}
+                    {state.id}- {state.name}
                   </SelectItem>)}
               </SelectContent>
             </Select>

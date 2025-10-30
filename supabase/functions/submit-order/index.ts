@@ -186,7 +186,7 @@ serve(async (req) => {
     console.log('Order stored successfully:', orderReference);
 
     // Send to webhook asynchronously
-    const webhookUrl = 'https://n8n-n8n.2ufl9p.easypanel.host/webhook-test/555c65e3-5b29-4dad-8a05-dbea3e9909a9';
+    const webhookUrl = 'https://n8n-n8n.2ufl9p.easypanel.host/webhook-test/c9977864-c285-4720-8a74-799d52258dfd';
     const webhookPayload = {
       orderReference,
       fullName: sanitizedData.fullName,
