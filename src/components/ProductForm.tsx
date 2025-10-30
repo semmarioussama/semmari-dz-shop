@@ -34,6 +34,7 @@ const ProductForm = () => {
   
   const formSubmittedRef = useRef(false);
   const formStartedRef = useRef(false);
+  const abandonedTimerRef = useRef<number | null>(null);
   const selectedStateData = algerianStates.find(state => state.id === selectedState);
 
   // Track when user starts filling the form
@@ -43,7 +44,7 @@ const ProductForm = () => {
     }
   }, [formData, selectedState]);
 
-  // Send abandoned order webhook when user leaves
+  // Send abandoned order webhook 1 minute after user leaves
   useEffect(() => {
     const sendAbandonedWebhook = () => {
       // Only send if user started filling but didn't submit
@@ -63,30 +64,35 @@ const ProductForm = () => {
           abandonedAt: new Date().toISOString()
         };
 
-        // Use sendBeacon for reliable delivery on page unload
+        // Use sendBeacon for reliable delivery
         const webhookUrl = 'https://n8n-n8n.2ufl9p.easypanel.host/webhook-test/caca736d-f7ae-48e8-9a98-5d05d1e06822';
         navigator.sendBeacon(webhookUrl, JSON.stringify(abandonedData));
       }
     };
 
-    // Handle different exit scenarios
-    const handleBeforeUnload = () => sendAbandonedWebhook();
-    const handlePageHide = () => sendAbandonedWebhook();
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'hidden') {
-        sendAbandonedWebhook();
+        // Start 1-minute timer when user leaves
+        abandonedTimerRef.current = window.setTimeout(() => {
+          sendAbandonedWebhook();
+        }, 60000); // 1 minute = 60000ms
+      } else if (document.visibilityState === 'visible') {
+        // Cancel timer if user returns
+        if (abandonedTimerRef.current !== null) {
+          clearTimeout(abandonedTimerRef.current);
+          abandonedTimerRef.current = null;
+        }
       }
     };
 
-    // Add multiple event listeners for maximum reliability
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    window.addEventListener('pagehide', handlePageHide);
     document.addEventListener('visibilitychange', handleVisibilityChange);
     
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-      window.removeEventListener('pagehide', handlePageHide);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
+      // Clear timer on cleanup
+      if (abandonedTimerRef.current !== null) {
+        clearTimeout(abandonedTimerRef.current);
+      }
     };
   }, [formData, selectedState, quantity]);
   const handleSubmit = async (e: React.FormEvent) => {
