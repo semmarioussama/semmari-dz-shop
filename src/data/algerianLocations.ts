@@ -19,7 +19,27 @@ export const algerianStates: State[] = [
   { id: "07", name: "Biskra", districts: [{ id: "07-01", name: "Biskra" }] },
   { id: "08", name: "Béchar", districts: [{ id: "08-01", name: "Béchar" }] },
   { id: "09", name: "Blida", districts: [{ id: "09-01", name: "Blida" }] },
-  { id: "10", name: "Bouira", districts: [{ id: "10-01", name: "Bouira" }] },
+  { 
+    id: "10", 
+    name: "Bouira", 
+    districts: [
+      { id: "10-01", name: "Aghbalou" },
+      { id: "10-02", name: "Ahl El Ksar" },
+      { id: "10-03", name: "Ain Bessem" },
+      { id: "10-04", name: "Ain El Hadjar" },
+      { id: "10-05", name: "Ain Laloui" },
+      { id: "10-06", name: "Ain Turk" },
+      { id: "10-07", name: "Ait Laaziz" },
+      { id: "10-08", name: "Aomar" },
+      { id: "10-09", name: "Bechloul" },
+      { id: "10-10", name: "Bir Ghbalou" },
+      { id: "10-11", name: "Bordj Okhriss" },
+      { id: "10-12", name: "Bouderbala" },
+      { id: "10-13", name: "Bouira" },
+      { id: "10-14", name: "Boukram" },
+      { id: "10-15", name: "Chorfa" }
+    ] 
+  },
   { id: "11", name: "Tamanrasset", districts: [{ id: "11-01", name: "Tamanrasset" }] },
   { id: "12", name: "Tébessa", districts: [{ id: "12-01", name: "Tébessa" }] },
   { id: "13", name: "Tlemcen", districts: [{ id: "13-01", name: "Tlemcen" }] },
