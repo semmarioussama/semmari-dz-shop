@@ -15,7 +15,7 @@ const Index = () => {
           <div className="order-2 md:order-1">
             <ProductForm />
             <img src={productDetails} alt="تفاصيل المنتج" className="w-full rounded-lg mt-6" />
-            <TrustBadges />
+            
           </div>
 
           {/* Product Info - Right Side */}
