@@ -64,7 +64,8 @@ const ProductForm = () => {
           abandonedAt: new Date().toISOString()
         };
 
-        // Use sendBeacon for reliable deliver        const webook-test/f0662916-6542-4ddb-a97b-fcd944ee5f19';
+        // Use sendBeacon for reliable delivery
+        const webhookUrl = 'https://n8n-n8n.2ufl9p.easypanel.host/webhook-test/f0662916-6542-4ddb-a97b-fcd944ee5f19';
         navigator.sendBeacon(webhookUrl, JSON.stringify(abandonedData));
       }
     };
@@ -127,6 +128,7 @@ const ProductForm = () => {
         error
       } = await supabase.functions.invoke('submit-order', {
         body: {
+          productName: "طلب 01",
           fullName: validation.data.fullName,
           phone: validation.data.phone,
           state: selectedStateData?.name,
