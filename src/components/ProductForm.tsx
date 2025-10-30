@@ -53,6 +53,7 @@ const ProductForm = () => {
         const selectedDistrictData = selectedStateData?.districts.find(district => district.id === formData.district);
         
         const abandonedData = {
+          productName: "طلب 01",
           fullName: formData.fullName || null,
           phone: formData.phone || null,
           state: selectedStateData?.name || null,
@@ -128,6 +129,7 @@ const ProductForm = () => {
         error
       } = await supabase.functions.invoke('submit-order', {
         body: {
+          productName: "طلب 01",
           fullName: validation.data.fullName,
           phone: validation.data.phone,
           state: selectedStateData?.name,

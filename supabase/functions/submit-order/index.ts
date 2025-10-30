@@ -16,6 +16,7 @@ const ALGERIAN_PHONE_REGEX = /^(00213|\+213|0)(5|6|7)[0-9]{8}$/;
 
 // Input validation and sanitization
 interface SanitizedData {
+  productName: string;
   fullName: string;
   phone: string;
   state: string;
@@ -29,6 +30,15 @@ function validateAndSanitizeInput(data: any):
   | { valid: false; errors: string[] }
   | { valid: true; sanitized: SanitizedData } {
   const errors: string[] = [];
+
+  // Validate product name
+  if (!data.productName || typeof data.productName !== 'string') {
+    errors.push('Product name is required');
+  } else if (data.productName.trim().length === 0) {
+    errors.push('Product name cannot be empty');
+  } else if (data.productName.length > 100) {
+    errors.push('Product name must be less than 100 characters');
+  }
 
   // Validate customer name
   if (!data.fullName || typeof data.fullName !== 'string') {
@@ -81,6 +91,7 @@ function validateAndSanitizeInput(data: any):
   return {
     valid: true,
     sanitized: {
+      productName: data.productName.trim().slice(0, 100),
       fullName: data.fullName.trim().slice(0, 100),
       phone: data.phone.trim(),
       state: data.state.trim().slice(0, 50),
@@ -189,6 +200,7 @@ serve(async (req) => {
     const webhookUrl = 'https://n8n-n8n.2ufl9p.easypanel.host/webhook-test/c9977864-c285-4720-8a74-799d52258dfd';
     const webhookPayload = {
       orderReference,
+      productName: sanitizedData.productName,
       fullName: sanitizedData.fullName,
       phone: sanitizedData.phone,
       state: sanitizedData.state,
