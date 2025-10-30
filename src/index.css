@@ -102,10 +102,13 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    font-size: 20px;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-family: 'Cairo', sans-serif;
     direction: rtl;
-    font-size: 20px;
   }
 }
