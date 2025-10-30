@@ -255,7 +255,7 @@ const ProductForm = () => {
 
           <Button type="submit" size="lg" disabled={isSubmitting} className="w-full text-lg py-6 text-slate-50 text-right bg-lime-700 hover:bg-lime-600 rounded-lg">
             {isSubmitting ? <>
-                <Loader2 className="ml-2 h-5 w-5 animate-spin" />
+                <Loader2 className="ml-2 h-5 w-5 animate-spin mx-[9px] my-[10px]" />
                 جاري الإرسال...
               </> : "اضغط هنا لتأكيد الطلب"}
           </Button>
