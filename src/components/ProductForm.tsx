@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -31,7 +31,46 @@ const ProductForm = () => {
     district: "",
     option: "option1"
   });
+  
+  const formSubmittedRef = useRef(false);
+  const formStartedRef = useRef(false);
   const selectedStateData = algerianStates.find(state => state.id === selectedState);
+
+  // Track when user starts filling the form
+  useEffect(() => {
+    if (formData.fullName || formData.phone || selectedState || formData.district !== "") {
+      formStartedRef.current = true;
+    }
+  }, [formData, selectedState]);
+
+  // Send abandoned order webhook when user leaves
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      // Only send if user started filling but didn't submit
+      if (formStartedRef.current && !formSubmittedRef.current) {
+        const selectedStateData = algerianStates.find(state => state.id === selectedState);
+        const selectedDistrictData = selectedStateData?.districts.find(district => district.id === formData.district);
+        
+        const abandonedData = {
+          fullName: formData.fullName,
+          phone: formData.phone,
+          state: selectedStateData?.name || "",
+          stateId: selectedState,
+          district: selectedDistrictData?.name || "",
+          selectedOption: formData.option,
+          quantity: quantity,
+          abandonedAt: new Date().toISOString()
+        };
+
+        // Use sendBeacon for reliable delivery on page unload
+        const webhookUrl = 'https://n8n-n8n.2ufl9p.easypanel.host/webhook-test/caca736d-f7ae-48e8-9a98-5d05d1e06822';
+        navigator.sendBeacon(webhookUrl, JSON.stringify(abandonedData));
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [formData, selectedState, quantity]);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedState) {
@@ -80,6 +119,9 @@ const ProductForm = () => {
       if (!data?.success) {
         throw new Error(data?.error || 'Failed to submit order');
       }
+
+      // Mark form as submitted to prevent abandoned order webhook
+      formSubmittedRef.current = true;
 
       // Reset form
       setFormData({
