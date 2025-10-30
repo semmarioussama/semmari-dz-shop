@@ -45,7 +45,7 @@ const ProductForm = () => {
 
   // Send abandoned order webhook when user leaves
   useEffect(() => {
-    const handleBeforeUnload = () => {
+    const sendAbandonedWebhook = () => {
       // Only send if user started filling but didn't submit
       if (formStartedRef.current && !formSubmittedRef.current) {
         const selectedStateData = algerianStates.find(state => state.id === selectedState);
@@ -69,8 +69,25 @@ const ProductForm = () => {
       }
     };
 
+    // Handle different exit scenarios
+    const handleBeforeUnload = () => sendAbandonedWebhook();
+    const handlePageHide = () => sendAbandonedWebhook();
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        sendAbandonedWebhook();
+      }
+    };
+
+    // Add multiple event listeners for maximum reliability
     window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener('pagehide', handlePageHide);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener('pagehide', handlePageHide);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, [formData, selectedState, quantity]);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
