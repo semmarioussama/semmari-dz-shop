@@ -106,6 +106,6 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
     font-family: 'Cairo', sans-serif;
     direction: rtl;
-    font-size: 16px;
+    font-size: 20px;
   }
 }
