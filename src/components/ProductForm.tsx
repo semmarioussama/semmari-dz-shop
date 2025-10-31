@@ -17,6 +17,7 @@ const formSchema = z.object({
   fullName: z.string().trim().min(3, "الاسم يجب أن يحتوي على 3 أحرف على الأقل").max(100),
   phone: phoneSchema,
   district: z.string().min(1, "يرجى اختيار البلدية"),
+  address: z.string().trim().min(5, "العنوان يجب أن يحتوي على 5 أحرف على الأقل").max(200),
   option: z.string()
 });
 
@@ -34,6 +35,7 @@ const ProductForm = ({ productName }: ProductFormProps) => {
     fullName: "",
     phone: "",
     district: "",
+    address: "",
     option: "option1"
   });
   const formSubmittedRef = useRef(false);
@@ -43,7 +45,7 @@ const ProductForm = ({ productName }: ProductFormProps) => {
 
   // Track when user starts filling the form
   useEffect(() => {
-    if (formData.fullName || formData.phone || selectedState || formData.district !== "") {
+    if (formData.fullName || formData.phone || selectedState || formData.district !== "" || formData.address !== "") {
       formStartedRef.current = true;
     }
   }, [formData, selectedState]);
@@ -134,6 +136,7 @@ const ProductForm = ({ productName }: ProductFormProps) => {
           state: selectedStateData?.name,
           stateId: selectedState,
           district: selectedDistrictData?.name,
+          address: validation.data.address,
           selectedOption: formData.option,
           quantity: quantity
         }
@@ -153,6 +156,7 @@ const ProductForm = ({ productName }: ProductFormProps) => {
         fullName: "",
         phone: "",
         district: "",
+        address: "",
         option: "option1"
       });
       setSelectedState("");
@@ -232,6 +236,14 @@ const ProductForm = ({ productName }: ProductFormProps) => {
                   </SelectItem>)}
               </SelectContent>
             </Select>
+          </div>
+
+          <div>
+            <Label htmlFor="address">📍 العنوان</Label>
+            <Input id="address" value={formData.address} onChange={e => setFormData({
+              ...formData,
+              address: e.target.value
+            })} className="mt-1" placeholder="أدخل عنوانك الكامل" required />
           </div>
 
           <div className="flex flex-col items-center gap-2 pt-2">

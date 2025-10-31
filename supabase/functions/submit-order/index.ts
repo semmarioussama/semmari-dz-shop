@@ -22,6 +22,7 @@ interface SanitizedData {
   state: string;
   stateId: string;
   district: string;
+  address: string;
   selectedOption: string;
   quantity: number;
 }
@@ -71,6 +72,15 @@ function validateAndSanitizeInput(data: any):
     errors.push('District is required');
   }
 
+  // Validate address
+  if (!data.address || typeof data.address !== 'string') {
+    errors.push('Address is required');
+  } else if (data.address.trim().length < 5) {
+    errors.push('Address must be at least 5 characters');
+  } else if (data.address.length > 200) {
+    errors.push('Address must be less than 200 characters');
+  }
+
   // Validate selected option
   if (!data.selectedOption || typeof data.selectedOption !== 'string') {
     errors.push('Product option is required');
@@ -97,6 +107,7 @@ function validateAndSanitizeInput(data: any):
       state: data.state.trim().slice(0, 50),
       stateId: data.stateId.trim().slice(0, 10),
       district: data.district.trim().slice(0, 100),
+      address: data.address.trim().slice(0, 200),
       selectedOption: data.selectedOption.trim(),
       quantity: Math.floor(Math.min(Math.max(data.quantity, 1), 100)),
     }
@@ -206,6 +217,7 @@ serve(async (req) => {
       state: sanitizedData.state,
       stateId: sanitizedData.stateId,
       district: sanitizedData.district,
+      address: sanitizedData.address,
       selectedOption: sanitizedData.selectedOption,
       quantity: sanitizedData.quantity,
       timestamp: new Date().toISOString()
