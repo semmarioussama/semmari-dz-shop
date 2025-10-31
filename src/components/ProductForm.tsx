@@ -234,18 +234,6 @@ const ProductForm = ({ productName }: ProductFormProps) => {
             </Select>
           </div>
 
-          <div>
-            <Label className="mb-3 block">الأثمان متوفرة</Label>
-            <RadioGroup value={formData.option} onValueChange={value => setFormData({
-              ...formData,
-              option: value
-            })} className="space-y-3">
-              
-
-              
-            </RadioGroup>
-          </div>
-
           <div className="flex flex-col items-center gap-2 pt-2">
             <Label>الكمية</Label>
             <div className="flex items-center gap-3 border rounded-lg">
