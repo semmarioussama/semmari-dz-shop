@@ -243,7 +243,7 @@ const ProductForm = ({ productName }: ProductFormProps) => {
             <Input id="address" value={formData.address} onChange={e => setFormData({
               ...formData,
               address: e.target.value
-            })} className="mt-1" placeholder="أدخل عنوانك الكامل" required />
+            })} className="mt-1" placeholder="أدخل عنوانك، مثال: حي 500 مسكن ، عمارة 06" required />
           </div>
 
           <div className="flex flex-col items-center gap-2 pt-2">
