@@ -246,7 +246,7 @@ const ProductForm = ({ productName }: ProductFormProps) => {
             </RadioGroup>
           </div>
 
-          <div className="flex items-center justify-between pt-2">
+          <div className="flex flex-col items-center gap-2 pt-2">
             <Label>الكمية</Label>
             <div className="flex items-center gap-3 border rounded-lg">
               <Button type="button" variant="ghost" size="icon" onClick={() => setQuantity(Math.max(1, quantity - 1))} disabled={isSubmitting} className="h-12 w-12">
