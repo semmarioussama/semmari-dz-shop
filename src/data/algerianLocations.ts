@@ -296,7 +296,23 @@ export const algerianStates: State[] = [
       { id: "07-27", name: "Zeribet El Oued" }
     ] 
   },
-  { id: "08", name: "Béchar", districts: [{ id: "08-01", name: "Béchar" }] },
+  { 
+    id: "08", 
+    name: "Béchar", 
+    districts: [
+      { id: "08-01", name: "Abadla" },
+      { id: "08-02", name: "Bechar" },
+      { id: "08-03", name: "Beni Ounif" },
+      { id: "08-04", name: "Boukais" },
+      { id: "08-05", name: "Erg Ferradj" },
+      { id: "08-06", name: "Kenadsa" },
+      { id: "08-07", name: "Lahmar" },
+      { id: "08-08", name: "Mechraa H.boumediene" },
+      { id: "08-09", name: "Meridja" },
+      { id: "08-10", name: "Mogheul" },
+      { id: "08-11", name: "Taghit" }
+    ] 
+  },
   { id: "09", name: "Blida", districts: [{ id: "09-01", name: "Blida" }] },
   { 
     id: "10", 
