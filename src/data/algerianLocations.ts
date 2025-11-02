@@ -395,7 +395,17 @@ export const algerianStates: State[] = [
       { id: "10-45", name: "Z'barbar" }
     ] 
   },
-  { id: "11", name: "Tamanrasset", districts: [{ id: "11-01", name: "Tamanrasset" }] },
+  { 
+    id: "11", 
+    name: "Tamanrasset", 
+    districts: [
+      { id: "11-01", name: "Abalessa" },
+      { id: "11-02", name: "Ain Amguel" },
+      { id: "11-03", name: "Idles" },
+      { id: "11-04", name: "Tamanrasset" },
+      { id: "11-05", name: "Tazrouk" }
+    ] 
+  },
   { id: "12", name: "Tébessa", districts: [{ id: "12-01", name: "Tébessa" }] },
   { id: "13", name: "Tlemcen", districts: [{ id: "13-01", name: "Tlemcen" }] },
   { id: "14", name: "Tiaret", districts: [{ id: "14-01", name: "Tiaret" }] },
