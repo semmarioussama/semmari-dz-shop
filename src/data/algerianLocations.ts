@@ -263,7 +263,39 @@ export const algerianStates: State[] = [
       { id: "06-52", name: "Toudja" }
     ] 
   },
-  { id: "07", name: "Biskra", districts: [{ id: "07-01", name: "Biskra" }] },
+  { 
+    id: "07", 
+    name: "Biskra", 
+    districts: [
+      { id: "07-01", name: "Ain Naga" },
+      { id: "07-02", name: "Ain Zaatout" },
+      { id: "07-03", name: "Biskra" },
+      { id: "07-04", name: "Bordj Ben Azzouz" },
+      { id: "07-05", name: "Bouchagroun" },
+      { id: "07-06", name: "Branis" },
+      { id: "07-07", name: "Chetma" },
+      { id: "07-08", name: "Djemorah" },
+      { id: "07-09", name: "El Feidh" },
+      { id: "07-10", name: "El Ghrous" },
+      { id: "07-11", name: "El Hadjab" },
+      { id: "07-12", name: "El Haouch" },
+      { id: "07-13", name: "El Kantara" },
+      { id: "07-14", name: "El Outaya" },
+      { id: "07-15", name: "Foughala" },
+      { id: "07-16", name: "Khenguet Sidi Nadji" },
+      { id: "07-17", name: "Lichana" },
+      { id: "07-18", name: "Lioua" },
+      { id: "07-19", name: "M'chouneche" },
+      { id: "07-20", name: "M'lili" },
+      { id: "07-21", name: "Mekhadma" },
+      { id: "07-22", name: "Meziraa" },
+      { id: "07-23", name: "Oumache" },
+      { id: "07-24", name: "Ourlal" },
+      { id: "07-25", name: "Sidi Okba" },
+      { id: "07-26", name: "Tolga" },
+      { id: "07-27", name: "Zeribet El Oued" }
+    ] 
+  },
   { id: "08", name: "Béchar", districts: [{ id: "08-01", name: "Béchar" }] },
   { id: "09", name: "Blida", districts: [{ id: "09-01", name: "Blida" }] },
   { 
