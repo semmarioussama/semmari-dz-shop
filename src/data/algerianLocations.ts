@@ -313,7 +313,37 @@ export const algerianStates: State[] = [
       { id: "08-11", name: "Taghit" }
     ] 
   },
-  { id: "09", name: "Blida", districts: [{ id: "09-01", name: "Blida" }] },
+  { 
+    id: "09", 
+    name: "Blida", 
+    districts: [
+      { id: "09-01", name: "Ain Romana" },
+      { id: "09-02", name: "Beni Mered" },
+      { id: "09-03", name: "Beni Tamou" },
+      { id: "09-04", name: "Benkhelil" },
+      { id: "09-05", name: "Blida" },
+      { id: "09-06", name: "Bouarfa" },
+      { id: "09-07", name: "Boufarik" },
+      { id: "09-08", name: "Bougara" },
+      { id: "09-09", name: "Bouinan" },
+      { id: "09-10", name: "Chebli" },
+      { id: "09-11", name: "Chiffa" },
+      { id: "09-12", name: "Chrea" },
+      { id: "09-13", name: "Djebabra" },
+      { id: "09-14", name: "El Affroun" },
+      { id: "09-15", name: "Guerrouaou" },
+      { id: "09-16", name: "Hammam Melouane" },
+      { id: "09-17", name: "Larbaa" },
+      { id: "09-18", name: "Meftah" },
+      { id: "09-19", name: "Mouzaia" },
+      { id: "09-20", name: "Oued Djer" },
+      { id: "09-21", name: "Oued El Alleug" },
+      { id: "09-22", name: "Ouled Slama" },
+      { id: "09-23", name: "Ouled Yaich" },
+      { id: "09-24", name: "Souhane" },
+      { id: "09-25", name: "Souma" }
+    ] 
+  },
   { 
     id: "10", 
     name: "Bouira", 
