@@ -10,7 +10,28 @@ export interface State {
 }
 
 export const algerianStates: State[] = [
-  { id: "01", name: "Adrar", districts: [{ id: "01-01", name: "Adrar" }] },
+  { 
+    id: "01", 
+    name: "Adrar", 
+    districts: [
+      { id: "01-01", name: "Adrar" },
+      { id: "01-02", name: "Akabli" },
+      { id: "01-03", name: "Aoulef" },
+      { id: "01-04", name: "Bouda" },
+      { id: "01-05", name: "Fenoughil" },
+      { id: "01-06", name: "In Zghmir" },
+      { id: "01-07", name: "Ouled Ahmed Timmi" },
+      { id: "01-08", name: "Reggane" },
+      { id: "01-09", name: "Sali" },
+      { id: "01-10", name: "Sebaa" },
+      { id: "01-11", name: "Tamantit" },
+      { id: "01-12", name: "Tamest" },
+      { id: "01-13", name: "Timekten" },
+      { id: "01-14", name: "Tit" },
+      { id: "01-15", name: "Tsabit" },
+      { id: "01-16", name: "Zaouiet Kounta" }
+    ] 
+  },
   { id: "02", name: "Chlef", districts: [{ id: "02-01", name: "Chlef" }] },
   { id: "03", name: "Laghouat", districts: [{ id: "03-01", name: "Laghouat" }] },
   { id: "04", name: "Oum El Bouaghi", districts: [{ id: "04-01", name: "Oum El Bouaghi" }] },
