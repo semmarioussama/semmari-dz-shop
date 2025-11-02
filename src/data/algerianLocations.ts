@@ -73,7 +73,36 @@ export const algerianStates: State[] = [
       { id: "02-35", name: "Zeboudja" }
     ] 
   },
-  { id: "03", name: "Laghouat", districts: [{ id: "03-01", name: "Laghouat" }] },
+  { 
+    id: "03", 
+    name: "Laghouat", 
+    districts: [
+      { id: "03-01", name: "Aflou" },
+      { id: "03-02", name: "Ain Madhi" },
+      { id: "03-03", name: "Ain Sidi Ali" },
+      { id: "03-04", name: "Beidha" },
+      { id: "03-05", name: "Benacer Benchohra" },
+      { id: "03-06", name: "Brida" },
+      { id: "03-07", name: "El Assafia" },
+      { id: "03-08", name: "El Ghicha" },
+      { id: "03-09", name: "El Haouaita" },
+      { id: "03-10", name: "Gueltat Sidi Saad" },
+      { id: "03-11", name: "Hadj Mechri" },
+      { id: "03-12", name: "Hassi Delaa" },
+      { id: "03-13", name: "Hassi R'mel" },
+      { id: "03-14", name: "Kheneg" },
+      { id: "03-15", name: "Ksar El Hirane" },
+      { id: "03-16", name: "Laghouat" },
+      { id: "03-17", name: "Oued M'zi" },
+      { id: "03-18", name: "Oued Morra" },
+      { id: "03-19", name: "Sebgag" },
+      { id: "03-20", name: "Sidi Bouzid" },
+      { id: "03-21", name: "Sidi Makhlouf" },
+      { id: "03-22", name: "Tadjemout" },
+      { id: "03-23", name: "Tadjrouna" },
+      { id: "03-24", name: "Taouiala" }
+    ] 
+  },
   { id: "04", name: "Oum El Bouaghi", districts: [{ id: "04-01", name: "Oum El Bouaghi" }] },
   { id: "05", name: "Batna", districts: [{ id: "05-01", name: "Batna" }] },
   { id: "06", name: "Béjaïa", districts: [{ id: "06-01", name: "Béjaïa" }] },
