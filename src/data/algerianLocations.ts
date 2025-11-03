@@ -826,7 +826,28 @@ export const algerianStates: State[] = [
       { id: "19-60", name: "Tizi N'bechar" }
     ] 
   },
-  { id: "20", name: "Saïda", districts: [{ id: "20-01", name: "Saïda" }] },
+  { 
+    id: "20", 
+    name: "Saïda", 
+    districts: [
+      { id: "20-01", name: "Ain El Hadjar" },
+      { id: "20-02", name: "Ain Sekhouna" },
+      { id: "20-03", name: "Ain Soltane" },
+      { id: "20-04", name: "Doui Thabet" },
+      { id: "20-05", name: "El Hassasna" },
+      { id: "20-06", name: "Hounet" },
+      { id: "20-07", name: "Maamora" },
+      { id: "20-08", name: "Moulay Larbi" },
+      { id: "20-09", name: "Ouled Brahim" },
+      { id: "20-10", name: "Ouled Khaled" },
+      { id: "20-11", name: "Saida" },
+      { id: "20-12", name: "Sidi Ahmed" },
+      { id: "20-13", name: "Sidi Amar" },
+      { id: "20-14", name: "Sidi Boubekeur" },
+      { id: "20-15", name: "Tircine" },
+      { id: "20-16", name: "Youb" }
+    ] 
+  },
   { id: "21", name: "Skikda", districts: [{ id: "21-01", name: "Skikda" }] },
   { id: "22", name: "Sidi Bel Abbès", districts: [{ id: "22-01", name: "Sidi Bel Abbès" }] },
   { id: "23", name: "Annaba", districts: [{ id: "23-01", name: "Annaba" }] },
