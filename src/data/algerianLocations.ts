@@ -950,7 +950,24 @@ export const algerianStates: State[] = [
       { id: "22-52", name: "Zerouala" }
     ] 
   },
-  { id: "23", name: "Annaba", districts: [{ id: "23-01", name: "Annaba" }] },
+  { 
+    id: "23", 
+    name: "Annaba", 
+    districts: [
+      { id: "23-01", name: "Ain Berda" },
+      { id: "23-02", name: "Annaba" },
+      { id: "23-03", name: "Berrahel" },
+      { id: "23-04", name: "Chetaibi" },
+      { id: "23-05", name: "Cheurfa" },
+      { id: "23-06", name: "El Bouni" },
+      { id: "23-07", name: "El Hadjar" },
+      { id: "23-08", name: "Eulma" },
+      { id: "23-09", name: "Oued El Aneb" },
+      { id: "23-10", name: "Seraidi" },
+      { id: "23-11", name: "Sidi Amar" },
+      { id: "23-12", name: "Treat" }
+    ] 
+  },
   { id: "24", name: "Guelma", districts: [{ id: "24-01", name: "Guelma" }] },
   { id: "25", name: "Constantine", districts: [{ id: "25-01", name: "Constantine" }] },
   { id: "26", name: "Médéa", districts: [{ id: "26-01", name: "Médéa" }] },
