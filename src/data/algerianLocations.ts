@@ -1008,7 +1008,24 @@ export const algerianStates: State[] = [
       { id: "24-34", name: "Tamlouka" }
     ] 
   },
-  { id: "25", name: "Constantine", districts: [{ id: "25-01", name: "Constantine" }] },
+  { 
+    id: "25", 
+    name: "Constantine", 
+    districts: [
+      { id: "25-01", name: "Ain Abid" },
+      { id: "25-02", name: "Ain Smara" },
+      { id: "25-03", name: "Ben Badis" },
+      { id: "25-04", name: "Beni Hamidene" },
+      { id: "25-05", name: "Constantine" },
+      { id: "25-06", name: "Didouche Mourad" },
+      { id: "25-07", name: "El Khroub" },
+      { id: "25-08", name: "Hamma Bouziane" },
+      { id: "25-09", name: "Ibn Ziad" },
+      { id: "25-10", name: "Messaoud Boujeriou" },
+      { id: "25-11", name: "Ouled Rahmouni" },
+      { id: "25-12", name: "Zighoud Youcef" }
+    ] 
+  },
   { id: "26", name: "Médéa", districts: [{ id: "26-01", name: "Médéa" }] },
   { id: "27", name: "Mostaganem", districts: [{ id: "27-01", name: "Mostaganem" }] },
   { id: "28", name: "M'Sila", districts: [{ id: "28-01", name: "M'Sila" }] },
