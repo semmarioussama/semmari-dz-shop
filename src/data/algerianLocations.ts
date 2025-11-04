@@ -1440,7 +1440,34 @@ export const algerianStates: State[] = [
       { id: "37-02", name: "Tindouf" }
     ] 
   },
-  { id: "38", name: "Tissemsilt", districts: [{ id: "38-01", name: "Tissemsilt" }] },
+  { 
+    id: "38", 
+    name: "Tissemsilt", 
+    districts: [
+      { id: "38-01", name: "Ammari" },
+      { id: "38-02", name: "Beni Chaib" },
+      { id: "38-03", name: "Beni Lahcene" },
+      { id: "38-04", name: "Bordj Bounaama" },
+      { id: "38-05", name: "Bordj El Emir Abdelkader" },
+      { id: "38-06", name: "Bou Caid" },
+      { id: "38-07", name: "Khemisti" },
+      { id: "38-08", name: "Larbaa" },
+      { id: "38-09", name: "Lardjem" },
+      { id: "38-10", name: "Layoune" },
+      { id: "38-11", name: "Lazharia" },
+      { id: "38-12", name: "Maacem" },
+      { id: "38-13", name: "Melaab" },
+      { id: "38-14", name: "Ouled Bessem" },
+      { id: "38-15", name: "Sidi Abed" },
+      { id: "38-16", name: "Sidi Boutouchent" },
+      { id: "38-17", name: "Sidi Lantri" },
+      { id: "38-18", name: "Sidi Slimane" },
+      { id: "38-19", name: "Tamellalet" },
+      { id: "38-20", name: "Theniet El Had" },
+      { id: "38-21", name: "Tissemsilt" },
+      { id: "38-22", name: "Youssoufia" }
+    ] 
+  },
   { id: "39", name: "El Oued", districts: [{ id: "39-01", name: "El Oued" }] },
   { id: "40", name: "Khenchela", districts: [{ id: "40-01", name: "Khenchela" }] },
   { id: "41", name: "Souk Ahras", districts: [{ id: "41-01", name: "Souk Ahras" }] },
