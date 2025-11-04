@@ -1402,7 +1402,36 @@ export const algerianStates: State[] = [
       { id: "35-32", name: "Zemmouri" }
     ] 
   },
-  { id: "36", name: "El Tarf", districts: [{ id: "36-01", name: "El Tarf" }] },
+  { 
+    id: "36", 
+    name: "El Tarf", 
+    districts: [
+      { id: "36-01", name: "Ain El Assel" },
+      { id: "36-02", name: "Ain Kerma" },
+      { id: "36-03", name: "Asfour" },
+      { id: "36-04", name: "Ben M Hidi" },
+      { id: "36-05", name: "Berrihane" },
+      { id: "36-06", name: "Besbes" },
+      { id: "36-07", name: "Bougous" },
+      { id: "36-08", name: "Bouhadjar" },
+      { id: "36-09", name: "Bouteldja" },
+      { id: "36-10", name: "Chebaita Mokhtar" },
+      { id: "36-11", name: "Chefia" },
+      { id: "36-12", name: "Chihani" },
+      { id: "36-13", name: "Drean" },
+      { id: "36-14", name: "Echatt" },
+      { id: "36-15", name: "El Aioun" },
+      { id: "36-16", name: "El Kala" },
+      { id: "36-17", name: "El Tarf" },
+      { id: "36-18", name: "Hammam Beni Salah" },
+      { id: "36-19", name: "Lac Des Oiseaux" },
+      { id: "36-20", name: "Oued Zitoun" },
+      { id: "36-21", name: "Raml Souk" },
+      { id: "36-22", name: "Souarekh" },
+      { id: "36-23", name: "Zerizer" },
+      { id: "36-24", name: "Zitouna" }
+    ] 
+  },
   { id: "37", name: "Tindouf", districts: [{ id: "37-01", name: "Tindouf" }] },
   { id: "38", name: "Tissemsilt", districts: [{ id: "38-01", name: "Tissemsilt" }] },
   { id: "39", name: "El Oued", districts: [{ id: "39-01", name: "El Oued" }] },
