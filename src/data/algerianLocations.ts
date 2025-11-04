@@ -1314,7 +1314,16 @@ export const algerianStates: State[] = [
       { id: "32-22", name: "Tousmouline" }
     ] 
   },
-  { id: "33", name: "Illizi", districts: [{ id: "33-01", name: "Illizi" }] },
+  { 
+    id: "33", 
+    name: "Illizi", 
+    districts: [
+      { id: "33-01", name: "Bordj Omar Driss" },
+      { id: "33-02", name: "Debdeb" },
+      { id: "33-03", name: "Illizi" },
+      { id: "33-04", name: "In Amenas" }
+    ] 
+  },
   { id: "34", name: "Bordj Bou Arréridj", districts: [{ id: "34-01", name: "Bordj Bou Arréridj" }] },
   { id: "35", name: "Boumerdès", districts: [{ id: "35-01", name: "Boumerdès" }] },
   { id: "36", name: "El Tarf", districts: [{ id: "36-01", name: "El Tarf" }] },
