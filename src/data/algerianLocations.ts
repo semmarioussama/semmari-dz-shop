@@ -1468,7 +1468,34 @@ export const algerianStates: State[] = [
       { id: "38-22", name: "Youssoufia" }
     ] 
   },
-  { id: "39", name: "El Oued", districts: [{ id: "39-01", name: "El Oued" }] },
+  { 
+    id: "39", 
+    name: "El Oued", 
+    districts: [
+      { id: "39-01", name: "Bayadha" },
+      { id: "39-02", name: "Ben Guecha" },
+      { id: "39-03", name: "Debila" },
+      { id: "39-04", name: "Douar El Maa" },
+      { id: "39-05", name: "El Ogla" },
+      { id: "39-06", name: "El Oued" },
+      { id: "39-07", name: "Guemar" },
+      { id: "39-08", name: "Hamraia" },
+      { id: "39-09", name: "Hassani Abdelkrim" },
+      { id: "39-10", name: "Hassi Khalifa" },
+      { id: "39-11", name: "Kouinine" },
+      { id: "39-12", name: "Magrane" },
+      { id: "39-13", name: "Mih Ouansa" },
+      { id: "39-14", name: "Nakhla" },
+      { id: "39-15", name: "Oued El Alenda" },
+      { id: "39-16", name: "Ourmes" },
+      { id: "39-17", name: "Reguiba" },
+      { id: "39-18", name: "Robbah" },
+      { id: "39-19", name: "Sidi Aoun" },
+      { id: "39-20", name: "Taghzout" },
+      { id: "39-21", name: "Taleb Larbi" },
+      { id: "39-22", name: "Trifaoui" }
+    ] 
+  },
   { id: "40", name: "Khenchela", districts: [{ id: "40-01", name: "Khenchela" }] },
   { id: "41", name: "Souk Ahras", districts: [{ id: "41-01", name: "Souk Ahras" }] },
   { id: "42", name: "Tipaza", districts: [{ id: "42-01", name: "Tipaza" }] },
