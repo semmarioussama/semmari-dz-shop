@@ -1432,7 +1432,14 @@ export const algerianStates: State[] = [
       { id: "36-24", name: "Zitouna" }
     ] 
   },
-  { id: "37", name: "Tindouf", districts: [{ id: "37-01", name: "Tindouf" }] },
+  { 
+    id: "37", 
+    name: "Tindouf", 
+    districts: [
+      { id: "37-01", name: "Oum El Assel" },
+      { id: "37-02", name: "Tindouf" }
+    ] 
+  },
   { id: "38", name: "Tissemsilt", districts: [{ id: "38-01", name: "Tissemsilt" }] },
   { id: "39", name: "El Oued", districts: [{ id: "39-01", name: "El Oued" }] },
   { id: "40", name: "Khenchela", districts: [{ id: "40-01", name: "Khenchela" }] },
