@@ -1286,7 +1286,34 @@ export const algerianStates: State[] = [
       { id: "31-26", name: "Tafraoui" }
     ] 
   },
-  { id: "32", name: "El Bayadh", districts: [{ id: "32-01", name: "El Bayadh" }] },
+  { 
+    id: "32", 
+    name: "El Bayadh", 
+    districts: [
+      { id: "32-01", name: "Ain El Orak" },
+      { id: "32-02", name: "Arbaouat" },
+      { id: "32-03", name: "Boualem" },
+      { id: "32-04", name: "Bougtoub" },
+      { id: "32-05", name: "Boussemghoun" },
+      { id: "32-06", name: "Brezina" },
+      { id: "32-07", name: "Cheguig" },
+      { id: "32-08", name: "Chellala" },
+      { id: "32-09", name: "El Bayadh" },
+      { id: "32-10", name: "El Biodh Sidi Cheikh" },
+      { id: "32-11", name: "El Bnoud" },
+      { id: "32-12", name: "El Kheither" },
+      { id: "32-13", name: "El Mehara" },
+      { id: "32-14", name: "Ghassoul" },
+      { id: "32-15", name: "Kef El Ahmar" },
+      { id: "32-16", name: "Krakda" },
+      { id: "32-17", name: "Rogassa" },
+      { id: "32-18", name: "Sidi Ameur" },
+      { id: "32-19", name: "Sidi Slimane" },
+      { id: "32-20", name: "Sidi Tifour" },
+      { id: "32-21", name: "Stitten" },
+      { id: "32-22", name: "Tousmouline" }
+    ] 
+  },
   { id: "33", name: "Illizi", districts: [{ id: "33-01", name: "Illizi" }] },
   { id: "34", name: "Bordj Bou Arréridj", districts: [{ id: "34-01", name: "Bordj Bou Arréridj" }] },
   { id: "35", name: "Boumerdès", districts: [{ id: "35-01", name: "Boumerdès" }] },
