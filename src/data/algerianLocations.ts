@@ -1240,7 +1240,20 @@ export const algerianStates: State[] = [
       { id: "29-47", name: "Zelamta" }
     ] 
   },
-  { id: "30", name: "Ouargla", districts: [{ id: "30-01", name: "Ouargla" }] },
+  { 
+    id: "30", 
+    name: "Ouargla", 
+    districts: [
+      { id: "30-01", name: "Ain Beida" },
+      { id: "30-02", name: "El Borma" },
+      { id: "30-03", name: "Hassi Ben Abdellah" },
+      { id: "30-04", name: "Hassi Messaoud" },
+      { id: "30-05", name: "N'goussa" },
+      { id: "30-06", name: "Ouargla" },
+      { id: "30-07", name: "Rouissat" },
+      { id: "30-08", name: "Sidi Khouiled" }
+    ] 
+  },
   { id: "31", name: "Oran", districts: [{ id: "31-01", name: "Oran" }] },
   { id: "32", name: "El Bayadh", districts: [{ id: "32-01", name: "El Bayadh" }] },
   { id: "33", name: "Illizi", districts: [{ id: "33-01", name: "Illizi" }] },
