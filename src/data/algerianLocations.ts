@@ -1496,7 +1496,33 @@ export const algerianStates: State[] = [
       { id: "39-22", name: "Trifaoui" }
     ] 
   },
-  { id: "40", name: "Khenchela", districts: [{ id: "40-01", name: "Khenchela" }] },
+  { 
+    id: "40", 
+    name: "Khenchela", 
+    districts: [
+      { id: "40-01", name: "Ain Touila" },
+      { id: "40-02", name: "Babar" },
+      { id: "40-03", name: "Baghai" },
+      { id: "40-04", name: "Bouhmama" },
+      { id: "40-05", name: "Chelia" },
+      { id: "40-06", name: "Cherchar" },
+      { id: "40-07", name: "Djellal" },
+      { id: "40-08", name: "El Hamma" },
+      { id: "40-09", name: "El Mahmal" },
+      { id: "40-10", name: "El Oueldja" },
+      { id: "40-11", name: "Ensigha" },
+      { id: "40-12", name: "Kais" },
+      { id: "40-13", name: "Khenchela" },
+      { id: "40-14", name: "Khirane" },
+      { id: "40-15", name: "M'sara" },
+      { id: "40-16", name: "M'toussa" },
+      { id: "40-17", name: "Ouled Rechache" },
+      { id: "40-18", name: "Remila" },
+      { id: "40-19", name: "Tamza" },
+      { id: "40-20", name: "Taouzianat" },
+      { id: "40-21", name: "Yabous" }
+    ] 
+  },
   { id: "41", name: "Souk Ahras", districts: [{ id: "41-01", name: "Souk Ahras" }] },
   { id: "42", name: "Tipaza", districts: [{ id: "42-01", name: "Tipaza" }] },
   { id: "43", name: "Mila", districts: [{ id: "43-01", name: "Mila" }] },
