@@ -1781,8 +1781,29 @@ export const algerianStates: State[] = [
       { id: "48-38", name: "Zemmoura" }
     ] 
   },
-  { id: "49", name: "El M'Ghair", districts: [{ id: "49-01", name: "El M'Ghair" }] },
-  { id: "50", name: "El Menia", districts: [{ id: "50-01", name: "El Menia" }] },
+  { 
+    id: "49", 
+    name: "El M'Ghair", 
+    districts: [
+      { id: "49-01", name: "Djamaa" },
+      { id: "49-02", name: "El M'ghair" },
+      { id: "49-03", name: "Mrara" },
+      { id: "49-04", name: "Oum Touyour" },
+      { id: "49-05", name: "Sidi Amrane" },
+      { id: "49-06", name: "Sidi Khelil" },
+      { id: "49-07", name: "Still" },
+      { id: "49-08", name: "Tenedla" }
+    ] 
+  },
+  { 
+    id: "50", 
+    name: "El Menia", 
+    districts: [
+      { id: "50-01", name: "El Meniaa" },
+      { id: "50-02", name: "Hassi Fehal" },
+      { id: "50-03", name: "Hassi Gara" }
+    ] 
+  },
   { 
     id: "51", 
     name: "Ouled Djellal", 
@@ -1854,7 +1875,14 @@ export const algerianStates: State[] = [
       { id: "55-13", name: "Zaouia El Abidia" }
     ] 
   },
-  { id: "56", name: "Djanet", districts: [{ id: "56-01", name: "Djanet" }] },
+  { 
+    id: "56", 
+    name: "Djanet", 
+    districts: [
+      { id: "56-01", name: "Bordj El Haouasse" },
+      { id: "56-02", name: "Djanet" }
+    ] 
+  },
   { 
     id: "57", 
     name: "In Salah", 
