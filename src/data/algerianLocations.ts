@@ -1786,7 +1786,22 @@ export const algerianStates: State[] = [
   { id: "51", name: "Ouled Djellal", districts: [{ id: "51-01", name: "Ouled Djellal" }] },
   { id: "52", name: "Bordj Badji Mokhtar", districts: [{ id: "52-01", name: "Bordj Badji Mokhtar" }] },
   { id: "53", name: "Béni Abbès", districts: [{ id: "53-01", name: "Béni Abbès" }] },
-  { id: "54", name: "Timimoun", districts: [{ id: "54-01", name: "Timimoun" }] },
+  { 
+    id: "54", 
+    name: "Timimoun", 
+    districts: [
+      { id: "54-01", name: "Aougrout" },
+      { id: "54-02", name: "Charouine" },
+      { id: "54-03", name: "Deldoul" },
+      { id: "54-04", name: "Ksar Kaddour" },
+      { id: "54-05", name: "Metarfa" },
+      { id: "54-06", name: "Ouled Aissa" },
+      { id: "54-07", name: "Ouled Said" },
+      { id: "54-08", name: "Talmine" },
+      { id: "54-09", name: "Timimoun" },
+      { id: "54-10", name: "Tinerkouk" }
+    ] 
+  },
   { id: "55", name: "Touggourt", districts: [{ id: "55-01", name: "Touggourt" }] },
   { id: "56", name: "Djanet", districts: [{ id: "56-01", name: "Djanet" }] },
   { id: "57", name: "In Salah", districts: [{ id: "57-01", name: "In Salah" }] },
