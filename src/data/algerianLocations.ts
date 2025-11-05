@@ -1669,7 +1669,24 @@ export const algerianStates: State[] = [
       { id: "44-36", name: "Zeddine" }
     ] 
   },
-  { id: "45", name: "Naâma", districts: [{ id: "45-01", name: "Naâma" }] },
+  { 
+    id: "45", 
+    name: "Naâma", 
+    districts: [
+      { id: "45-01", name: "Ain Ben Khelil" },
+      { id: "45-02", name: "Ain Safra" },
+      { id: "45-03", name: "Assela" },
+      { id: "45-04", name: "Djeniane Bourzeg" },
+      { id: "45-05", name: "El Biod" },
+      { id: "45-06", name: "Kasdir" },
+      { id: "45-07", name: "Makman Ben Amer" },
+      { id: "45-08", name: "Mecheria" },
+      { id: "45-09", name: "Moghrar" },
+      { id: "45-10", name: "Naama" },
+      { id: "45-11", name: "Sfissifa" },
+      { id: "45-12", name: "Tiout" }
+    ] 
+  },
   { id: "46", name: "Aïn Témouchent", districts: [{ id: "46-01", name: "Aïn Témouchent" }] },
   { id: "47", name: "Ghardaïa", districts: [{ id: "47-01", name: "Ghardaïa" }] },
   { id: "48", name: "Relizane", districts: [{ id: "48-01", name: "Relizane" }] },
