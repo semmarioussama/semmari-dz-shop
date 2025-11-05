@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,7 +9,6 @@ import { Minus, Plus, User, Phone, Loader2 } from "lucide-react";
 import { algerianStates } from "@/data/algerianLocations";
 import { toast } from "@/hooks/use-toast";
 import { z } from "zod";
-import SuccessModal from "@/components/SuccessModal";
 import { supabase } from "@/integrations/supabase/client";
 
 // Algerian phone validation schema
@@ -26,11 +26,10 @@ interface ProductFormProps {
 }
 
 const ProductForm = ({ productName }: ProductFormProps) => {
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const [selectedState, setSelectedState] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [orderReference, setOrderReference] = useState("");
   const [formData, setFormData] = useState({
     fullName: "",
     phone: "",
@@ -151,20 +150,8 @@ const ProductForm = ({ productName }: ProductFormProps) => {
       // Mark form as submitted to prevent abandoned order webhook
       formSubmittedRef.current = true;
 
-      // Reset form
-      setFormData({
-        fullName: "",
-        phone: "",
-        district: "",
-        address: "",
-        option: "option1"
-      });
-      setSelectedState("");
-      setQuantity(1);
-
-      // Show success modal with order reference from server
-      setOrderReference(data.orderReference);
-      setShowSuccessModal(true);
+      // Navigate to thank you page with order reference and customer name
+      navigate(`/thank-you?ref=${data.orderReference}&name=${encodeURIComponent(validation.data.fullName)}`);
     } catch (error) {
       console.error("Error sending order:", error);
       toast({
@@ -176,9 +163,7 @@ const ProductForm = ({ productName }: ProductFormProps) => {
       setIsSubmitting(false);
     }
   };
-  return <>
-      <SuccessModal isOpen={showSuccessModal} orderRef={orderReference} onClose={() => setShowSuccessModal(false)} />
-      <form onSubmit={handleSubmit} className="space-y-6">
+  return <form onSubmit={handleSubmit} className="space-y-6">
       <div className="bg-card border-2 border-primary/10 rounded-lg p-6">
         <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
           👇 أضف معلوماتك في الأسفل للطلب
@@ -267,7 +252,6 @@ const ProductForm = ({ productName }: ProductFormProps) => {
           </Button>
         </div>
       </div>
-    </form>
-    </>;
+    </form>;
 };
 export default ProductForm;
