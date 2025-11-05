@@ -1803,7 +1803,22 @@ export const algerianStates: State[] = [
       { id: "52-02", name: "Timiaouine" }
     ] 
   },
-  { id: "53", name: "Béni Abbès", districts: [{ id: "53-01", name: "Béni Abbès" }] },
+  { 
+    id: "53", 
+    name: "Béni Abbès", 
+    districts: [
+      { id: "53-01", name: "Beni Abbes" },
+      { id: "53-02", name: "Beni Ikhlef" },
+      { id: "53-03", name: "El Ouata" },
+      { id: "53-04", name: "Igli" },
+      { id: "53-05", name: "Kerzaz" },
+      { id: "53-06", name: "Ksabi" },
+      { id: "53-07", name: "Ouled Khoudir" },
+      { id: "53-08", name: "Tabelbala" },
+      { id: "53-09", name: "Tamtert" },
+      { id: "53-10", name: "Timoudi" }
+    ] 
+  },
   { 
     id: "54", 
     name: "Timimoun", 
