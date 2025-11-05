@@ -1784,7 +1784,14 @@ export const algerianStates: State[] = [
   { id: "49", name: "El M'Ghair", districts: [{ id: "49-01", name: "El M'Ghair" }] },
   { id: "50", name: "El Menia", districts: [{ id: "50-01", name: "El Menia" }] },
   { id: "51", name: "Ouled Djellal", districts: [{ id: "51-01", name: "Ouled Djellal" }] },
-  { id: "52", name: "Bordj Badji Mokhtar", districts: [{ id: "52-01", name: "Bordj Badji Mokhtar" }] },
+  { 
+    id: "52", 
+    name: "Bordj Badji Mokhtar", 
+    districts: [
+      { id: "52-01", name: "Bordj Badji Mokhtar" },
+      { id: "52-02", name: "Timiaouine" }
+    ] 
+  },
   { id: "53", name: "Béni Abbès", districts: [{ id: "53-01", name: "Béni Abbès" }] },
   { 
     id: "54", 
