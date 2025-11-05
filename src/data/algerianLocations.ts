@@ -1837,6 +1837,14 @@ export const algerianStates: State[] = [
   },
   { id: "55", name: "Touggourt", districts: [{ id: "55-01", name: "Touggourt" }] },
   { id: "56", name: "Djanet", districts: [{ id: "56-01", name: "Djanet" }] },
-  { id: "57", name: "In Salah", districts: [{ id: "57-01", name: "In Salah" }] },
+  { 
+    id: "57", 
+    name: "In Salah", 
+    districts: [
+      { id: "57-01", name: "Foggaret Azzaouia" },
+      { id: "57-02", name: "In Ghar" },
+      { id: "57-03", name: "In Salah" }
+    ] 
+  },
   { id: "58", name: "In Guezzam", districts: [{ id: "58-01", name: "In Guezzam" }] },
 ];
