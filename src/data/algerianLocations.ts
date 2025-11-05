@@ -1835,7 +1835,25 @@ export const algerianStates: State[] = [
       { id: "54-10", name: "Tinerkouk" }
     ] 
   },
-  { id: "55", name: "Touggourt", districts: [{ id: "55-01", name: "Touggourt" }] },
+  { 
+    id: "55", 
+    name: "Touggourt", 
+    districts: [
+      { id: "55-01", name: "Benaceur" },
+      { id: "55-02", name: "Blidet Amor" },
+      { id: "55-03", name: "El Alia" },
+      { id: "55-04", name: "El Hadjira" },
+      { id: "55-05", name: "Megarine" },
+      { id: "55-06", name: "Mnaguer" },
+      { id: "55-07", name: "Nezla" },
+      { id: "55-08", name: "Sidi Slimane" },
+      { id: "55-09", name: "Taibet" },
+      { id: "55-10", name: "Tebesbest" },
+      { id: "55-11", name: "Temacine" },
+      { id: "55-12", name: "Touggourt" },
+      { id: "55-13", name: "Zaouia El Abidia" }
+    ] 
+  },
   { id: "56", name: "Djanet", districts: [{ id: "56-01", name: "Djanet" }] },
   { 
     id: "57", 
@@ -1846,5 +1864,12 @@ export const algerianStates: State[] = [
       { id: "57-03", name: "In Salah" }
     ] 
   },
-  { id: "58", name: "In Guezzam", districts: [{ id: "58-01", name: "In Guezzam" }] },
+  { 
+    id: "58", 
+    name: "In Guezzam", 
+    districts: [
+      { id: "58-01", name: "In Guezzam" },
+      { id: "58-02", name: "Tin Zouatine" }
+    ] 
+  },
 ];
