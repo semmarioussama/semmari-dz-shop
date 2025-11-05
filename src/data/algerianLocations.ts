@@ -1783,25 +1783,26 @@ export const algerianStates: State[] = [
   },
   { 
     id: "49", 
-    name: "El M'Ghair", 
+    name: "Timimoun", 
     districts: [
-      { id: "49-01", name: "Djamaa" },
-      { id: "49-02", name: "El M'ghair" },
-      { id: "49-03", name: "Mrara" },
-      { id: "49-04", name: "Oum Touyour" },
-      { id: "49-05", name: "Sidi Amrane" },
-      { id: "49-06", name: "Sidi Khelil" },
-      { id: "49-07", name: "Still" },
-      { id: "49-08", name: "Tenedla" }
+      { id: "49-01", name: "Aougrout" },
+      { id: "49-02", name: "Charouine" },
+      { id: "49-03", name: "Deldoul" },
+      { id: "49-04", name: "Ksar Kaddour" },
+      { id: "49-05", name: "Metarfa" },
+      { id: "49-06", name: "Ouled Aissa" },
+      { id: "49-07", name: "Ouled Said" },
+      { id: "49-08", name: "Talmine" },
+      { id: "49-09", name: "Timimoun" },
+      { id: "49-10", name: "Tinerkouk" }
     ] 
   },
   { 
     id: "50", 
-    name: "El Menia", 
+    name: "Bordj Badji Mokhtar", 
     districts: [
-      { id: "50-01", name: "El Meniaa" },
-      { id: "50-02", name: "Hassi Fehal" },
-      { id: "50-03", name: "Hassi Gara" }
+      { id: "50-01", name: "Bordj Badji Mokhtar" },
+      { id: "50-02", name: "Timiaouine" }
     ] 
   },
   { 
@@ -1818,42 +1819,35 @@ export const algerianStates: State[] = [
   },
   { 
     id: "52", 
-    name: "Bordj Badji Mokhtar", 
+    name: "Béni Abbès", 
     districts: [
-      { id: "52-01", name: "Bordj Badji Mokhtar" },
-      { id: "52-02", name: "Timiaouine" }
+      { id: "52-01", name: "Beni Abbes" },
+      { id: "52-02", name: "Beni Ikhlef" },
+      { id: "52-03", name: "El Ouata" },
+      { id: "52-04", name: "Igli" },
+      { id: "52-05", name: "Kerzaz" },
+      { id: "52-06", name: "Ksabi" },
+      { id: "52-07", name: "Ouled Khoudir" },
+      { id: "52-08", name: "Tabelbala" },
+      { id: "52-09", name: "Tamtert" },
+      { id: "52-10", name: "Timoudi" }
     ] 
   },
   { 
     id: "53", 
-    name: "Béni Abbès", 
+    name: "In Salah", 
     districts: [
-      { id: "53-01", name: "Beni Abbes" },
-      { id: "53-02", name: "Beni Ikhlef" },
-      { id: "53-03", name: "El Ouata" },
-      { id: "53-04", name: "Igli" },
-      { id: "53-05", name: "Kerzaz" },
-      { id: "53-06", name: "Ksabi" },
-      { id: "53-07", name: "Ouled Khoudir" },
-      { id: "53-08", name: "Tabelbala" },
-      { id: "53-09", name: "Tamtert" },
-      { id: "53-10", name: "Timoudi" }
+      { id: "53-01", name: "Foggaret Azzaouia" },
+      { id: "53-02", name: "In Ghar" },
+      { id: "53-03", name: "In Salah" }
     ] 
   },
   { 
     id: "54", 
-    name: "Timimoun", 
+    name: "In Guezzam", 
     districts: [
-      { id: "54-01", name: "Aougrout" },
-      { id: "54-02", name: "Charouine" },
-      { id: "54-03", name: "Deldoul" },
-      { id: "54-04", name: "Ksar Kaddour" },
-      { id: "54-05", name: "Metarfa" },
-      { id: "54-06", name: "Ouled Aissa" },
-      { id: "54-07", name: "Ouled Said" },
-      { id: "54-08", name: "Talmine" },
-      { id: "54-09", name: "Timimoun" },
-      { id: "54-10", name: "Tinerkouk" }
+      { id: "54-01", name: "In Guezzam" },
+      { id: "54-02", name: "Tin Zouatine" }
     ] 
   },
   { 
@@ -1885,19 +1879,25 @@ export const algerianStates: State[] = [
   },
   { 
     id: "57", 
-    name: "In Salah", 
+    name: "El M'Ghair", 
     districts: [
-      { id: "57-01", name: "Foggaret Azzaouia" },
-      { id: "57-02", name: "In Ghar" },
-      { id: "57-03", name: "In Salah" }
+      { id: "57-01", name: "Djamaa" },
+      { id: "57-02", name: "El M'ghair" },
+      { id: "57-03", name: "Mrara" },
+      { id: "57-04", name: "Oum Touyour" },
+      { id: "57-05", name: "Sidi Amrane" },
+      { id: "57-06", name: "Sidi Khelil" },
+      { id: "57-07", name: "Still" },
+      { id: "57-08", name: "Tenedla" }
     ] 
   },
   { 
     id: "58", 
-    name: "In Guezzam", 
+    name: "El Menia", 
     districts: [
-      { id: "58-01", name: "In Guezzam" },
-      { id: "58-02", name: "Tin Zouatine" }
+      { id: "58-01", name: "El Meniaa" },
+      { id: "58-02", name: "Hassi Fehal" },
+      { id: "58-03", name: "Hassi Gara" }
     ] 
   },
 ];
