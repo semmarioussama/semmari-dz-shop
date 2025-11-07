@@ -4,6 +4,15 @@ import { CheckCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 
+// Declare TikTok Pixel type
+declare global {
+  interface Window {
+    ttq?: {
+      track: (event: string, data?: any) => void;
+    };
+  }
+}
+
 const ThankYou = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -14,6 +23,17 @@ const ThankYou = () => {
     // Redirect to home if no order reference
     if (!orderRef) {
       navigate("/");
+      return;
+    }
+
+    // Track TikTok conversion event
+    if (window.ttq) {
+      window.ttq.track('CompletePayment', {
+        content_id: orderRef,
+        content_name: 'سماعة بلوتوث لاسلكية',
+        value: 2990,
+        currency: 'DZD'
+      });
     }
   }, [orderRef, navigate]);
 
