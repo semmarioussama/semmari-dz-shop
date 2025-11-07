@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Skeleton } from "@/components/ui/skeleton";
-import productDetails from "@/assets/product-details.jpg";
+import productDetails from "@/assets/product-details-new.jpg";
 
 const ProductForm = lazy(() => import("@/components/ProductForm"));
 
