@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Skeleton } from "@/components/ui/skeleton";
 import productDetails from "@/assets/product-details-new.jpg";
+import { ChevronDown } from "lucide-react";
 
 const ProductForm = lazy(() => import("@/components/ProductForm"));
 
@@ -17,7 +18,15 @@ const Index = () => {
             <Suspense fallback={<Skeleton className="h-[600px] w-full" />}>
               <ProductForm productName="سماعة بلوتوث لاسلكية: صوت نقي وجودة عالية" />
             </Suspense>
-            <div className="relative mt-6">
+            
+            {/* Indicator for images below */}
+            <div className="flex items-center justify-center gap-2 mt-6 mb-4">
+              <ChevronDown className="text-primary animate-bounce" size={24} />
+              <p className="text-foreground font-semibold text-lg">صور المنتج في الأسفل</p>
+              <ChevronDown className="text-primary animate-bounce" size={24} />
+            </div>
+            
+            <div className="relative">
               {/* Transparent overlay to prevent direct interaction */}
               <div className="absolute inset-0 z-10" />
               
