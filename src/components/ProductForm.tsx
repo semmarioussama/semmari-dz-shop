@@ -238,13 +238,13 @@ const ProductForm = ({
               ...formData,
               deliveryMethod: value
             })} className="mt-2 space-y-3">
-              <div className="flex items-center space-x-2 space-x-reverse">
-                <RadioGroupItem value="home" id="home" />
+              <div className="flex items-center justify-end gap-2">
                 <Label htmlFor="home" className="cursor-pointer font-normal">توصيل إلى المنزل</Label>
+                <RadioGroupItem value="home" id="home" />
               </div>
-              <div className="flex items-center space-x-2 space-x-reverse">
-                <RadioGroupItem value="desk" id="desk" />
+              <div className="flex items-center justify-end gap-2">
                 <Label htmlFor="desk" className="cursor-pointer font-normal">توصيل إلى المكتب</Label>
+                <RadioGroupItem value="desk" id="desk" />
               </div>
             </RadioGroup>
           </div>
