@@ -85,10 +85,21 @@ export default {
             height: "0",
           },
         },
+        "breathe": {
+          "0%, 100%": {
+            transform: "scale(1)",
+            boxShadow: "0 0 20px rgba(132, 204, 22, 0.5)",
+          },
+          "50%": {
+            transform: "scale(1.02)",
+            boxShadow: "0 0 30px rgba(132, 204, 22, 0.8)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "breathe": "breathe 2s ease-in-out infinite",
       },
     },
   },
