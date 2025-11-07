@@ -9,7 +9,6 @@ declare global {
   interface Window {
     ttq?: {
       track: (event: string, data?: any) => void;
-      ready: (callback: () => void) => void;
     };
   }
 }
@@ -27,30 +26,33 @@ const ThankYou = () => {
       return;
     }
 
-    // Function to track conversion
-    const trackConversion = () => {
-      if (window.ttq) {
-        window.ttq.ready(() => {
+    // Function to track conversion with retry logic
+    const trackConversion = (attempt = 1) => {
+      if (window.ttq && typeof window.ttq.track === 'function') {
+        try {
           window.ttq.track('CompletePayment', {
             content_id: orderRef,
             content_name: 'سماعة بلوتوث لاسلكية',
             value: 2990,
             currency: 'DZD'
           });
-          console.log('✅ TikTok CompletePayment tracked:', orderRef);
-        });
+          console.log('✅ TikTok CompletePayment tracked:', orderRef, 'Attempt:', attempt);
+        } catch (error) {
+          console.error('❌ Error tracking TikTok event:', error);
+        }
+      } else {
+        console.log('⏳ TikTok Pixel not ready yet, attempt:', attempt);
+        // Retry up to 3 times with increasing delays
+        if (attempt < 4) {
+          setTimeout(() => trackConversion(attempt + 1), attempt * 1000);
+        } else {
+          console.error('❌ TikTok Pixel failed to load after multiple attempts');
+        }
       }
     };
 
-    // Try immediately
+    // Start tracking
     trackConversion();
-
-    // Fallback: retry after 2 seconds for slow mobile connections
-    const fallbackTimer = setTimeout(() => {
-      trackConversion();
-    }, 2000);
-
-    return () => clearTimeout(fallbackTimer);
   }, [orderRef, navigate]);
 
   if (!orderRef) {
