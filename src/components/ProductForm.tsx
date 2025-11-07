@@ -20,12 +20,12 @@ const formSchema = z.object({
   address: z.string().trim().min(5, "العنوان يجب أن يحتوي على 5 أحرف على الأقل").max(200),
   option: z.string()
 });
-
 interface ProductFormProps {
   productName: string;
 }
-
-const ProductForm = ({ productName }: ProductFormProps) => {
+const ProductForm = ({
+  productName
+}: ProductFormProps) => {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const [selectedState, setSelectedState] = useState("");
@@ -165,9 +165,7 @@ const ProductForm = ({ productName }: ProductFormProps) => {
   };
   return <form onSubmit={handleSubmit} className="space-y-6">
       <div className="bg-card border-2 border-primary/10 rounded-lg p-6">
-        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-          👇 أضف معلوماتك في الأسفل للطلب
-        </h3>
+        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">👇 أضف معلوماتك هنا للطلب:</h3>
 
         <div className="space-y-4">
           <div>
@@ -176,9 +174,9 @@ const ProductForm = ({ productName }: ProductFormProps) => {
               الإسم الكامل
             </Label>
             <Input id="fullName" value={formData.fullName} onChange={e => setFormData({
-              ...formData,
-              fullName: e.target.value
-            })} className="mt-1" required />
+            ...formData,
+            fullName: e.target.value
+          })} className="mt-1" required />
           </div>
 
           <div>
@@ -187,9 +185,9 @@ const ProductForm = ({ productName }: ProductFormProps) => {
               رقم الهاتف
             </Label>
             <Input id="phone" type="tel" value={formData.phone} onChange={e => setFormData({
-              ...formData,
-              phone: e.target.value
-            })} className="mt-1" required />
+            ...formData,
+            phone: e.target.value
+          })} className="mt-1" required />
           </div>
 
           <div>
@@ -209,9 +207,9 @@ const ProductForm = ({ productName }: ProductFormProps) => {
           <div>
             <Label htmlFor="district">🏘️ البلدية</Label>
             <Select value={formData.district} onValueChange={value => setFormData({
-              ...formData,
-              district: value
-            })} disabled={!selectedState}>
+            ...formData,
+            district: value
+          })} disabled={!selectedState}>
               <SelectTrigger className="mt-1">
                 <SelectValue placeholder="اختر البلدية" />
               </SelectTrigger>
@@ -226,9 +224,9 @@ const ProductForm = ({ productName }: ProductFormProps) => {
           <div>
             <Label htmlFor="address">📍 العنوان</Label>
             <Input id="address" value={formData.address} onChange={e => setFormData({
-              ...formData,
-              address: e.target.value
-            })} className="mt-1 placeholder:text-sm" placeholder="مثال: حي 500 مسكن ، عمارة 06" required />
+            ...formData,
+            address: e.target.value
+          })} className="mt-1 placeholder:text-sm" placeholder="مثال: حي 500 مسكن ، عمارة 06" required />
           </div>
 
           <div className="flex flex-col items-center gap-2 pt-2">
