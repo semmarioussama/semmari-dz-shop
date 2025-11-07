@@ -9,6 +9,7 @@ declare global {
   interface Window {
     ttq?: {
       track: (event: string, data?: any) => void;
+      ready: (callback: () => void) => void;
     };
   }
 }
@@ -26,15 +27,30 @@ const ThankYou = () => {
       return;
     }
 
-    // Track TikTok conversion event
-    if (window.ttq) {
-      window.ttq.track('CompletePayment', {
-        content_id: orderRef,
-        content_name: 'سماعة بلوتوث لاسلكية',
-        value: 2990,
-        currency: 'DZD'
-      });
-    }
+    // Function to track conversion
+    const trackConversion = () => {
+      if (window.ttq) {
+        window.ttq.ready(() => {
+          window.ttq.track('CompletePayment', {
+            content_id: orderRef,
+            content_name: 'سماعة بلوتوث لاسلكية',
+            value: 2990,
+            currency: 'DZD'
+          });
+          console.log('✅ TikTok CompletePayment tracked:', orderRef);
+        });
+      }
+    };
+
+    // Try immediately
+    trackConversion();
+
+    // Fallback: retry after 2 seconds for slow mobile connections
+    const fallbackTimer = setTimeout(() => {
+      trackConversion();
+    }, 2000);
+
+    return () => clearTimeout(fallbackTimer);
   }, [orderRef, navigate]);
 
   if (!orderRef) {
