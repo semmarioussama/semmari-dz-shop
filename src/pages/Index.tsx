@@ -17,13 +17,30 @@ const Index = () => {
             <Suspense fallback={<Skeleton className="h-[600px] w-full" />}>
               <ProductForm productName="سماعة بلوتوث لاسلكية: صوت نقي وجودة عالية" />
             </Suspense>
-            <img 
-              src={productDetails} 
-              alt="تفاصيل المنتج" 
-              className="w-full rounded-lg mt-6" 
-              loading="lazy"
-              decoding="async"
-            />
+            <div className="relative mt-6">
+              {/* Transparent overlay to prevent direct interaction */}
+              <div className="absolute inset-0 z-10" />
+              
+              <img 
+                src={productDetails} 
+                alt="تفاصيل المنتج" 
+                className="w-full rounded-lg select-none pointer-events-none" 
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+                onTouchStart={(e) => {
+                  if (e.touches.length > 1) {
+                    e.preventDefault();
+                  }
+                }}
+                style={{
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none',
+                  WebkitTouchCallout: 'none',
+                } as React.CSSProperties}
+              />
+            </div>
           </div>
 
           {/* Product Info - Right Side */}
