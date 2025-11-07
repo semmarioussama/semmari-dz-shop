@@ -18,7 +18,8 @@ const formSchema = z.object({
   phone: phoneSchema,
   district: z.string().min(1, "يرجى اختيار البلدية"),
   address: z.string().trim().min(5, "العنوان يجب أن يحتوي على 5 أحرف على الأقل").max(200),
-  option: z.string()
+  option: z.string(),
+  deliveryMethod: z.enum(["home", "desk"], { errorMap: () => ({ message: "يرجى اختيار طريقة التوصيل" }) })
 });
 interface ProductFormProps {
   productName: string;
@@ -35,7 +36,8 @@ const ProductForm = ({
     phone: "",
     district: "",
     address: "",
-    option: "option1"
+    option: "option1",
+    deliveryMethod: "home" as "home" | "desk"
   });
   const formSubmittedRef = useRef(false);
   const formStartedRef = useRef(false);
@@ -137,7 +139,8 @@ const ProductForm = ({
           district: selectedDistrictData?.name,
           address: validation.data.address,
           selectedOption: formData.option,
-          quantity: quantity
+          quantity: quantity,
+          deliveryMethod: validation.data.deliveryMethod
         }
       });
       if (error) {
@@ -227,6 +230,23 @@ const ProductForm = ({
             ...formData,
             address: e.target.value
           })} className="mt-1 placeholder:text-sm" placeholder="مثال: حي 500 مسكن ، عمارة 06" required />
+          </div>
+
+          <div>
+            <Label>🚚 طريقة التوصيل</Label>
+            <RadioGroup value={formData.deliveryMethod} onValueChange={(value: "home" | "desk") => setFormData({
+              ...formData,
+              deliveryMethod: value
+            })} className="mt-2 space-y-3">
+              <div className="flex items-center space-x-2 space-x-reverse">
+                <RadioGroupItem value="home" id="home" />
+                <Label htmlFor="home" className="cursor-pointer font-normal">توصيل إلى المنزل</Label>
+              </div>
+              <div className="flex items-center space-x-2 space-x-reverse">
+                <RadioGroupItem value="desk" id="desk" />
+                <Label htmlFor="desk" className="cursor-pointer font-normal">توصيل إلى المكتب</Label>
+              </div>
+            </RadioGroup>
           </div>
 
           <div className="flex flex-col items-center gap-2 pt-2">

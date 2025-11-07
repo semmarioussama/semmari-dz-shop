@@ -25,6 +25,7 @@ interface SanitizedData {
   address: string;
   selectedOption: string;
   quantity: number;
+  deliveryMethod: string;
 }
 
 function validateAndSanitizeInput(data: any): 
@@ -93,6 +94,13 @@ function validateAndSanitizeInput(data: any):
     errors.push('Quantity must be between 1 and 100');
   }
 
+  // Validate delivery method
+  if (!data.deliveryMethod || typeof data.deliveryMethod !== 'string') {
+    errors.push('Delivery method is required');
+  } else if (!['home', 'desk'].includes(data.deliveryMethod)) {
+    errors.push('Invalid delivery method');
+  }
+
   if (errors.length > 0) {
     return { valid: false, errors };
   }
@@ -110,6 +118,7 @@ function validateAndSanitizeInput(data: any):
       address: data.address.trim().slice(0, 200),
       selectedOption: data.selectedOption.trim(),
       quantity: Math.floor(Math.min(Math.max(data.quantity, 1), 100)),
+      deliveryMethod: data.deliveryMethod.trim(),
     }
   };
 }
@@ -220,6 +229,7 @@ serve(async (req) => {
       address: sanitizedData.address,
       selectedOption: sanitizedData.selectedOption,
       quantity: sanitizedData.quantity,
+      deliveryMethod: sanitizedData.deliveryMethod,
       timestamp: new Date().toISOString()
     };
 
