@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+
 import { Minus, Plus, User, Phone, Loader2 } from "lucide-react";
 import { algerianStates } from "@/data/algerianLocations";
 import { toast } from "@/hooks/use-toast";
@@ -37,7 +37,7 @@ const ProductForm = ({
     district: "",
     address: "",
     option: "option1",
-    deliveryMethod: "home" as "home" | "desk"
+    deliveryMethod: "" as "" | "home" | "desk"
   });
   const formSubmittedRef = useRef(false);
   const formStartedRef = useRef(false);
@@ -233,20 +233,19 @@ const ProductForm = ({
           </div>
 
           <div>
-            <Label>🚚 طريقة التوصيل</Label>
-            <RadioGroup value={formData.deliveryMethod} onValueChange={(value: "home" | "desk") => setFormData({
+            <Label htmlFor="deliveryMethod">🚚 طريقة التوصيل</Label>
+            <Select value={formData.deliveryMethod} onValueChange={(value: "home" | "desk") => setFormData({
               ...formData,
               deliveryMethod: value
-            })} className="mt-2 space-y-3">
-              <div className="flex items-center justify-end gap-2">
-                <Label htmlFor="home" className="cursor-pointer font-normal">توصيل إلى المنزل</Label>
-                <RadioGroupItem value="home" id="home" />
-              </div>
-              <div className="flex items-center justify-end gap-2">
-                <Label htmlFor="desk" className="cursor-pointer font-normal">توصيل إلى المكتب</Label>
-                <RadioGroupItem value="desk" id="desk" />
-              </div>
-            </RadioGroup>
+            })}>
+              <SelectTrigger className="mt-1">
+                <SelectValue placeholder="اختر طريقة التوصيل" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="home">توصيل إلى المنزل</SelectItem>
+                <SelectItem value="desk">توصيل إلى المكتب</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="flex flex-col items-center gap-2 pt-2">
