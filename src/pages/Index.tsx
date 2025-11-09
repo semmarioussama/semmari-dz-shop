@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Skeleton } from "@/components/ui/skeleton";
-import productDetails from "@/assets/product-main-hq.webp";
+import productDetails from "@/assets/product-main-new.webp";
 import { ChevronDown } from "lucide-react";
 
 const ProductForm = lazy(() => import("@/components/ProductForm"));
@@ -34,7 +34,8 @@ const Index = () => {
                 src={productDetails} 
                 alt="تفاصيل المنتج" 
                 className="w-full rounded-lg select-none pointer-events-none" 
-                loading="eager"
+                loading="lazy"
+                decoding="async"
                 draggable={false}
                 onContextMenu={(e) => e.preventDefault()}
                 onTouchStart={(e) => {
@@ -46,7 +47,6 @@ const Index = () => {
                   userSelect: 'none',
                   WebkitUserSelect: 'none',
                   WebkitTouchCallout: 'none',
-                  imageRendering: 'crisp-edges',
                 } as React.CSSProperties}
               />
             </div>
