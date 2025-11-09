@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Skeleton } from "@/components/ui/skeleton";
-import productDetails from "@/assets/product-main.jpg";
+import productDetails from "@/assets/product-main-hq.webp";
 import { ChevronDown } from "lucide-react";
 
 const ProductForm = lazy(() => import("@/components/ProductForm"));
