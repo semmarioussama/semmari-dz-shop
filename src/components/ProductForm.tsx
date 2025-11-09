@@ -5,6 +5,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
+// Declare TikTok Pixel type
+declare global {
+  interface Window {
+    ttq?: {
+      track: (event: string, data?: any) => void;
+    };
+  }
+}
+
 import { Minus, Plus, User, Phone, Loader2 } from "lucide-react";
 import { algerianStates } from "@/data/algerianLocations";
 import { toast } from "@/hooks/use-toast";
@@ -152,6 +161,24 @@ const ProductForm = ({
 
       // Mark form as submitted to prevent abandoned order webhook
       formSubmittedRef.current = true;
+
+      // Track TikTok conversion BEFORE navigation
+      if (window.ttq && typeof window.ttq.track === 'function') {
+        try {
+          window.ttq.track('CompletePayment', {
+            content_id: data.orderReference,
+            content_name: productName,
+            value: 2990 * quantity,
+            currency: 'DZD'
+          });
+          console.log('✅ TikTok CompletePayment tracked before navigation:', data.orderReference);
+        } catch (error) {
+          console.error('❌ Error tracking TikTok event:', error);
+        }
+      }
+
+      // Small delay to ensure tracking fires before navigation
+      await new Promise(resolve => setTimeout(resolve, 300));
 
       // Navigate to thank you page with order reference and customer name
       navigate(`/thank-you?ref=${data.orderReference}&name=${encodeURIComponent(validation.data.fullName)}`);
