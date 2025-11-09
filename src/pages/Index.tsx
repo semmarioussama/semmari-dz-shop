@@ -33,7 +33,7 @@ const Index = () => {
               <img 
                 src={productDetails} 
                 alt="تفاصيل المنتج" 
-                className="rounded-lg select-none pointer-events-none" 
+                className="w-full rounded-lg select-none pointer-events-none" 
                 loading="eager"
                 decoding="sync"
                 draggable={false}
@@ -44,14 +44,10 @@ const Index = () => {
                   }
                 }}
                 style={{
-                  maxWidth: '100%',
-                  height: 'auto',
-                  width: 'auto',
-                  display: 'block',
                   userSelect: 'none',
                   WebkitUserSelect: 'none',
                   WebkitTouchCallout: 'none',
-                  imageRendering: 'crisp-edges',
+                  imageRendering: '-webkit-optimize-contrast',
                 } as React.CSSProperties}
               />
             </div>
