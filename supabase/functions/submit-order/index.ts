@@ -216,6 +216,50 @@ serve(async (req) => {
 
     console.log('Order stored successfully:', orderReference);
 
+    // Send TikTok conversion event server-side
+    const tiktokPixelId = Deno.env.get('TIKTOK_PIXEL_ID');
+    const tiktokAccessToken = Deno.env.get('TIKTOK_ACCESS_TOKEN');
+
+    if (tiktokPixelId && tiktokAccessToken) {
+      const tiktokEventPayload = {
+        pixel_code: tiktokPixelId,
+        event: 'CompletePayment',
+        event_time: Math.floor(Date.now() / 1000),
+        event_id: orderReference,
+        properties: {
+          content_id: orderReference,
+          content_name: sanitizedData.productName,
+          value: 2990 * sanitizedData.quantity,
+          currency: 'DZD',
+          quantity: sanitizedData.quantity
+        },
+        context: {
+          user_agent: req.headers.get('user-agent') || '',
+          ip: clientIp
+        }
+      };
+
+      console.log('Sending TikTok conversion event:', tiktokEventPayload.event_id);
+
+      fetch('https://business-api.tiktok.com/open_api/v1.3/event/track/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Token': tiktokAccessToken
+        },
+        body: JSON.stringify(tiktokEventPayload)
+      }).then(response => {
+        console.log('TikTok API response status:', response.status);
+        return response.json();
+      }).then(data => {
+        console.log('TikTok API response:', JSON.stringify(data));
+      }).catch(error => {
+        console.error('TikTok API call failed:', error.message);
+      });
+    } else {
+      console.warn('TikTok credentials not configured');
+    }
+
     // Send to webhook asynchronously
     const webhookUrl = 'https://n8n-n8n.2ufl9p.easypanel.host/webhook-test/c9977864-c285-4720-8a74-799d52258dfd';
     const webhookPayload = {
