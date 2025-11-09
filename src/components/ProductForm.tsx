@@ -40,6 +40,7 @@ const ProductForm = ({
   const [quantity, setQuantity] = useState(1);
   const [selectedState, setSelectedState] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [ttclid, setTtclid] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     fullName: "",
     phone: "",
@@ -48,6 +49,16 @@ const ProductForm = ({
     option: "option1",
     deliveryMethod: "" as "" | "home" | "desk"
   });
+  
+  // Capture TikTok Click ID from URL
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const clickId = urlParams.get('ttclid') || localStorage.getItem('ttclid');
+    if (clickId) {
+      localStorage.setItem('ttclid', clickId);
+      setTtclid(clickId);
+    }
+  }, []);
   const formSubmittedRef = useRef(false);
   const formStartedRef = useRef(false);
   const abandonedTimerRef = useRef<number | null>(null);
@@ -149,7 +160,8 @@ const ProductForm = ({
           address: validation.data.address,
           selectedOption: formData.option,
           quantity: quantity,
-          deliveryMethod: validation.data.deliveryMethod
+          deliveryMethod: validation.data.deliveryMethod,
+          ttclid: ttclid // Pass TikTok click ID
         }
       });
       if (error) {

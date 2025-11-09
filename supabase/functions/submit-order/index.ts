@@ -26,6 +26,17 @@ interface SanitizedData {
   selectedOption: string;
   quantity: number;
   deliveryMethod: string;
+  ttclid?: string;
+}
+
+// Hash function for user identifiers
+async function hashSHA256(text: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(text);
+  const hash = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(hash))
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
 }
 
 function validateAndSanitizeInput(data: any): 
@@ -119,6 +130,7 @@ function validateAndSanitizeInput(data: any):
       selectedOption: data.selectedOption.trim(),
       quantity: Math.floor(Math.min(Math.max(data.quantity, 1), 100)),
       deliveryMethod: data.deliveryMethod.trim(),
+      ttclid: data.ttclid ? data.ttclid.trim() : undefined,
     }
   };
 }
@@ -221,27 +233,45 @@ serve(async (req) => {
     const tiktokAccessToken = Deno.env.get('TIKTOK_ACCESS_TOKEN');
 
     if (tiktokPixelId && tiktokAccessToken) {
-      const tiktokEventPayload = {
-        pixel_code: tiktokPixelId,
-        event: 'CompletePayment',
-        event_time: Math.floor(Date.now() / 1000),
-        event_id: orderReference,
-        event_source: 'web',
-        event_source_id: tiktokPixelId,
-        properties: {
-          content_id: orderReference,
-          content_name: sanitizedData.productName,
-          value: 2990 * sanitizedData.quantity,
-          currency: 'DZD',
-          quantity: sanitizedData.quantity
-        },
-        context: {
-          user_agent: req.headers.get('user-agent') || '',
-          ip: clientIp
+      // Hash phone number for better user matching
+      const hashedPhone = await hashSHA256(sanitizedData.phone);
+      
+      // Build context object with all available identifiers
+      const context: any = {
+        user_agent: req.headers.get('user-agent') || '',
+        ip: clientIp,
+        user: {
+          phone_number: hashedPhone,
         }
       };
 
-      console.log('Sending TikTok conversion event:', tiktokEventPayload.event_id);
+      // Add TikTok click ID if available for proper attribution
+      if (sanitizedData.ttclid) {
+        context.ad = {
+          callback: sanitizedData.ttclid
+        };
+      }
+
+      const tiktokEventPayload = {
+        pixel_code: tiktokPixelId,
+        data: [{ // Wrap in data array - required by TikTok API
+          event: 'CompletePayment',
+          event_time: Math.floor(Date.now() / 1000),
+          event_id: orderReference,
+          event_source: 'web',
+          event_source_id: tiktokPixelId,
+          properties: {
+            content_id: orderReference,
+            content_name: sanitizedData.productName,
+            value: 2990 * sanitizedData.quantity,
+            currency: 'DZD',
+            quantity: sanitizedData.quantity
+          },
+          context
+        }]
+      };
+
+      console.log('Sending TikTok conversion event:', orderReference, 'with ttclid:', sanitizedData.ttclid || 'none');
 
       fetch('https://business-api.tiktok.com/open_api/v1.3/event/track/', {
         method: 'POST',
