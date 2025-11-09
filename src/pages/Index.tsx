@@ -34,8 +34,8 @@ const Index = () => {
                 src={productDetails} 
                 alt="تفاصيل المنتج" 
                 className="w-full rounded-lg select-none pointer-events-none" 
-                loading="lazy"
-                decoding="async"
+                loading="eager"
+                decoding="sync"
                 draggable={false}
                 onContextMenu={(e) => e.preventDefault()}
                 onTouchStart={(e) => {
@@ -47,6 +47,7 @@ const Index = () => {
                   userSelect: 'none',
                   WebkitUserSelect: 'none',
                   WebkitTouchCallout: 'none',
+                  imageRendering: '-webkit-optimize-contrast',
                 } as React.CSSProperties}
               />
             </div>
