@@ -259,6 +259,7 @@ serve(async (req) => {
           event_time: Math.floor(Date.now() / 1000),
           event_id: orderReference,
           event_source: 'web',
+          event_source_id: tiktokPixelId,
           properties: {
             content_id: orderReference,
             content_name: sanitizedData.productName,
