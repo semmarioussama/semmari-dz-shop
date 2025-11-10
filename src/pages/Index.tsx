@@ -3,9 +3,9 @@ import Header from "@/components/Header";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Skeleton } from "@/components/ui/skeleton";
 import productDetails from "@/assets/product-main-new.webp";
-import productImage1 from "@/assets/LP_04.webp";
-import productImage2 from "@/assets/LP_02.webp";
-import productImage3 from "@/assets/LP_03.webp";
+import productImage1 from "@/assets/LP_02.webp";
+import productImage2 from "@/assets/LP_03.webp";
+import productImage3 from "@/assets/LP_04.webp";
 import { ChevronDown } from "lucide-react";
 
 const ProductForm = lazy(() => import("@/components/ProductForm"));
