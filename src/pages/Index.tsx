@@ -3,6 +3,9 @@ import Header from "@/components/Header";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Skeleton } from "@/components/ui/skeleton";
 import productDetails from "@/assets/product-main-new.webp";
+import productImage1 from "@/assets/LP_04.webp";
+import productImage2 from "@/assets/LP_02.webp";
+import productImage3 from "@/assets/LP_03.webp";
 import { ChevronDown } from "lucide-react";
 
 const ProductForm = lazy(() => import("@/components/ProductForm"));
@@ -33,6 +36,76 @@ const Index = () => {
               <img 
                 src={productDetails} 
                 alt="تفاصيل المنتج" 
+                className="w-full rounded-lg select-none pointer-events-none" 
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+                onTouchStart={(e) => {
+                  if (e.touches.length > 1) {
+                    e.preventDefault();
+                  }
+                }}
+                style={{
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none',
+                  WebkitTouchCallout: 'none',
+                } as React.CSSProperties}
+              />
+            </div>
+
+            {/* Additional Product Images */}
+            <div className="relative mt-4">
+              <div className="absolute inset-0 z-10" />
+              <img 
+                src={productImage1} 
+                alt="تفاصيل المنتج 1" 
+                className="w-full rounded-lg select-none pointer-events-none" 
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+                onTouchStart={(e) => {
+                  if (e.touches.length > 1) {
+                    e.preventDefault();
+                  }
+                }}
+                style={{
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none',
+                  WebkitTouchCallout: 'none',
+                } as React.CSSProperties}
+              />
+            </div>
+
+            <div className="relative mt-4">
+              <div className="absolute inset-0 z-10" />
+              <img 
+                src={productImage2} 
+                alt="تفاصيل المنتج 2" 
+                className="w-full rounded-lg select-none pointer-events-none" 
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+                onTouchStart={(e) => {
+                  if (e.touches.length > 1) {
+                    e.preventDefault();
+                  }
+                }}
+                style={{
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none',
+                  WebkitTouchCallout: 'none',
+                } as React.CSSProperties}
+              />
+            </div>
+
+            <div className="relative mt-4">
+              <div className="absolute inset-0 z-10" />
+              <img 
+                src={productImage3} 
+                alt="تفاصيل المنتج 3" 
                 className="w-full rounded-lg select-none pointer-events-none" 
                 loading="lazy"
                 decoding="async"
