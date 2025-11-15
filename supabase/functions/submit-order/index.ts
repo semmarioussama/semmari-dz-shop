@@ -293,7 +293,7 @@ serve(async (req) => {
     }
 
     // Send to webhook asynchronously
-    const webhookUrl = 'https://n8n-n8n.2ufl9p.easypanel.host/webhook-test/c9977864-c285-4720-8a74-799d52258dfd';
+    const webhookUrl = 'https://n8n-n8n.2ufl9p.easypanel.host/webhook/c9977864-c285-4720-8a74-799d52258dfd';
     const webhookPayload = {
       orderReference,
       productName: sanitizedData.productName,
