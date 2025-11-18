@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import Header from "@/components/Header";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -7,10 +7,25 @@ import productImage1 from "@/assets/LP_02.webp";
 import productImage2 from "@/assets/LP_03.webp";
 import productImage3 from "@/assets/LP_04.webp";
 import { ChevronDown } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const ProductForm = lazy(() => import("@/components/ProductForm"));
 
 const Index = () => {
+  // Track page visit
+  useEffect(() => {
+    const trackVisit = async () => {
+      try {
+        await supabase.functions.invoke("track-visit", {
+          body: { page_path: "/" },
+        });
+      } catch (error) {
+        console.error("Failed to track visit:", error);
+      }
+    };
+    trackVisit();
+  }, []);
+
   return <div className="min-h-screen bg-background">
       <Header />
 

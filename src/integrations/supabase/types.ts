@@ -113,6 +113,30 @@ export type Database = {
         }
         Relationships: []
       }
+      page_visits: {
+        Row: {
+          id: string
+          ip_address: string
+          page_path: string
+          user_agent: string | null
+          visited_at: string
+        }
+        Insert: {
+          id?: string
+          ip_address: string
+          page_path?: string
+          user_agent?: string | null
+          visited_at?: string
+        }
+        Update: {
+          id?: string
+          ip_address?: string
+          page_path?: string
+          user_agent?: string | null
+          visited_at?: string
+        }
+        Relationships: []
+      }
       product_images: {
         Row: {
           alt_text: string | null
