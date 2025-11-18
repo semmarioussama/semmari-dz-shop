@@ -1,6 +1,5 @@
 import { lazy, Suspense, useEffect } from "react";
 import Header from "@/components/Header";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import { Skeleton } from "@/components/ui/skeleton";
 import productDetails from "@/assets/product-main-new.webp";
 import productImage1 from "@/assets/LP_02.webp";
@@ -147,8 +146,6 @@ const Index = () => {
           </div>
         </div>
       </main>
-      
-      <WhatsAppButton />
     </div>;
 };
 export default Index;
