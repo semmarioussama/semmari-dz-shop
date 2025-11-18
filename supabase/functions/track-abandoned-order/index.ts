@@ -1,18 +1,14 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-// Rate limiting: 10 visits per IP per minute
+// Rate limiting: 3 abandoned orders per IP per hour
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
-const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
-const MAX_VISITS_PER_WINDOW = 10;
-
-// Whitelist of valid page paths
-const VALID_PATHS = ['/', '/admin', '/admin/orders', '/admin/products', '/admin/login', '/thank-you'];
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
+const MAX_ABANDONED_PER_WINDOW = 3;
 
 function checkRateLimit(ip: string): { allowed: boolean; message?: string } {
   const now = Date.now();
@@ -23,10 +19,10 @@ function checkRateLimit(ip: string): { allowed: boolean; message?: string } {
     return { allowed: true };
   }
 
-  if (entry.count >= MAX_VISITS_PER_WINDOW) {
+  if (entry.count >= MAX_ABANDONED_PER_WINDOW) {
     return { 
       allowed: false, 
-      message: `Rate limit exceeded. Maximum ${MAX_VISITS_PER_WINDOW} visits per minute.` 
+      message: `Rate limit exceeded. Maximum ${MAX_ABANDONED_PER_WINDOW} abandoned orders per hour.` 
     };
   }
 
@@ -40,11 +36,7 @@ serve(async (req) => {
   }
 
   try {
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
-
-    // Get IP address from various headers
+    // Get IP address
     const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
                req.headers.get("x-real-ip") ||
                "unknown";
@@ -59,40 +51,42 @@ serve(async (req) => {
       );
     }
 
-    const { page_path = "/" } = await req.json();
+    const data = await req.json();
 
-    // Validate page_path against whitelist
-    if (!VALID_PATHS.includes(page_path)) {
-      console.log('Invalid page path:', page_path);
+    // Validate that at least some form data exists
+    if (!data.fullName && !data.phone && !data.state && !data.district) {
       return new Response(
-        JSON.stringify({ error: "Invalid page path" }),
+        JSON.stringify({ error: "No form data provided" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
-    const user_agent = req.headers.get("user-agent") || null;
 
-    // Insert or ignore if already exists (UNIQUE constraint)
-    const { error } = await supabase
-      .from("page_visits")
-      .upsert(
-        {
-          ip_address: ip,
-          page_path,
-          user_agent,
-        },
-        {
-          onConflict: "ip_address,page_path",
-          ignoreDuplicates: true,
-        }
-      );
-
-    if (error) {
-      console.error("Error tracking visit:", error);
+    // Get webhook URL from environment
+    const webhookUrl = Deno.env.get("ABANDONED_ORDER_WEBHOOK_URL");
+    if (!webhookUrl) {
+      console.error("ABANDONED_ORDER_WEBHOOK_URL not configured");
       return new Response(
-        JSON.stringify({ error: error.message }),
+        JSON.stringify({ error: "Webhook not configured" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
+
+    // Forward to n8n webhook
+    const webhookResponse = await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (!webhookResponse.ok) {
+      console.error("Webhook delivery failed:", webhookResponse.status);
+      return new Response(
+        JSON.stringify({ error: "Failed to send webhook" }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    console.log("Abandoned order tracked successfully from IP:", ip);
 
     return new Response(
       JSON.stringify({ success: true }),
