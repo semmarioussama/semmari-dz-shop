@@ -210,31 +210,44 @@ const ProductForm = ({
       setIsSubmitting(false);
     }
   };
-  return <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="bg-card border-2 border-primary/10 rounded-lg p-6">
-        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">👇 أضف معلوماتك هنا للطلب:</h3>
+  return <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+      <div className="bg-card border-2 border-primary/10 rounded-lg p-4 sm:p-6">
+        <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 flex items-center gap-2">👇 أضف معلوماتك هنا للطلب:</h3>
 
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           <div>
-            <Label htmlFor="fullName" className="flex items-center gap-2">
+            <Label htmlFor="fullName" className="flex items-center gap-2 text-sm sm:text-base">
               <User className="w-4 h-4" />
               الإسم الكامل
             </Label>
-            <Input id="fullName" value={formData.fullName} onChange={e => setFormData({
-            ...formData,
-            fullName: e.target.value
-          })} className="mt-1" required />
+            <Input 
+              id="fullName" 
+              value={formData.fullName} 
+              onChange={e => setFormData({
+                ...formData,
+                fullName: e.target.value
+              })} 
+              className="mt-1 h-11 sm:h-10 text-base" 
+              required 
+            />
           </div>
 
           <div>
-            <Label htmlFor="phone" className="flex items-center gap-2">
+            <Label htmlFor="phone" className="flex items-center gap-2 text-sm sm:text-base">
               <Phone className="w-4 h-4" />
               رقم الهاتف
             </Label>
-            <Input id="phone" type="tel" value={formData.phone} onChange={e => setFormData({
-            ...formData,
-            phone: e.target.value
-          })} className="mt-1" required />
+            <Input 
+              id="phone" 
+              type="tel" 
+              value={formData.phone} 
+              onChange={e => setFormData({
+                ...formData,
+                phone: e.target.value
+              })} 
+              className="mt-1 h-11 sm:h-10 text-base" 
+              required 
+            />
           </div>
 
           <div>
@@ -269,43 +282,55 @@ const ProductForm = ({
           </div>
 
           <div>
-            <Label htmlFor="address">📍 العنوان</Label>
-            <Input id="address" value={formData.address} onChange={e => setFormData({
-            ...formData,
-            address: e.target.value
-          })} className="mt-1 placeholder:text-sm" placeholder="مثال: حي 500 مسكن ، عمارة 06" required />
+            <Label htmlFor="address" className="text-sm sm:text-base">📍 العنوان</Label>
+            <Input 
+              id="address" 
+              value={formData.address} 
+              onChange={e => setFormData({
+                ...formData,
+                address: e.target.value
+              })} 
+              className="mt-1 h-11 sm:h-10 text-base placeholder:text-sm" 
+              placeholder="مثال: حي 500 مسكن ، عمارة 06" 
+              required 
+            />
           </div>
 
           <div>
-            <Label htmlFor="deliveryMethod">🚚 طريقة التوصيل</Label>
+            <Label htmlFor="deliveryMethod" className="text-sm sm:text-base">🚚 طريقة التوصيل</Label>
             <Select value={formData.deliveryMethod} onValueChange={(value: "home" | "desk") => setFormData({
               ...formData,
               deliveryMethod: value
             })}>
-              <SelectTrigger className="mt-1">
+              <SelectTrigger className="mt-1 h-11 sm:h-10 text-base">
                 <SelectValue placeholder="اختر طريقة التوصيل" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="home">توصيل إلى المنزل</SelectItem>
-                <SelectItem value="desk">توصيل إلى المكتب</SelectItem>
+                <SelectItem value="home" className="text-base py-3">توصيل إلى المنزل</SelectItem>
+                <SelectItem value="desk" className="text-base py-3">توصيل إلى المكتب</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div className="flex flex-col items-center gap-2 pt-2">
-            <Label>الكمية</Label>
+            <Label className="text-sm sm:text-base">الكمية</Label>
             <div className="flex items-center gap-3 border rounded-lg">
-              <Button type="button" variant="ghost" size="icon" onClick={() => setQuantity(Math.max(1, quantity - 1))} disabled={isSubmitting} className="h-12 w-12">
-                <Minus className="w-4 h-4" />
+              <Button type="button" variant="ghost" size="icon" onClick={() => setQuantity(Math.max(1, quantity - 1))} disabled={isSubmitting} className="h-12 w-12 sm:h-11 sm:w-11 touch-manipulation">
+                <Minus className="w-5 h-5" />
               </Button>
-              <span className="w-12 text-center font-semibold text-lg">{quantity}</span>
-              <Button type="button" variant="ghost" size="icon" onClick={() => setQuantity(quantity + 1)} disabled={isSubmitting} className="h-12 w-12">
-                <Plus className="w-4 h-4" />
+              <span className="w-14 text-center font-semibold text-lg sm:text-xl">{quantity}</span>
+              <Button type="button" variant="ghost" size="icon" onClick={() => setQuantity(quantity + 1)} disabled={isSubmitting} className="h-12 w-12 sm:h-11 sm:w-11 touch-manipulation">
+                <Plus className="w-5 h-5" />
               </Button>
             </div>
           </div>
 
-          <Button type="submit" size="lg" disabled={isSubmitting} className="w-full text-lg py-6 text-slate-50 text-right bg-lime-700 hover:bg-lime-600 rounded-lg animate-breathe">
+          <Button 
+            type="submit" 
+            size="lg" 
+            disabled={isSubmitting} 
+            className="w-full text-lg sm:text-xl py-6 sm:py-7 text-slate-50 text-right bg-lime-700 hover:bg-lime-600 active:bg-lime-800 rounded-lg animate-breathe touch-manipulation font-bold"
+          >
             {isSubmitting ? <>
                 <Loader2 className="ml-2 h-5 w-5 animate-spin mx-[9px] my-[10px]" />
                 جاري الإرسال...
