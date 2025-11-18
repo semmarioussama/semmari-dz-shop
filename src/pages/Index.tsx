@@ -51,7 +51,8 @@ const Index = () => {
                 src={productDetails} 
                 alt="تفاصيل المنتج" 
                 className="w-full rounded-lg select-none pointer-events-none" 
-                loading="lazy"
+                loading="eager"
+                fetchPriority="high"
                 decoding="async"
                 draggable={false}
                 onContextMenu={(e) => e.preventDefault()}
