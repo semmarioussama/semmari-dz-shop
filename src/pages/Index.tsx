@@ -33,9 +33,11 @@ const Index = () => {
         <p className="text-foreground text-xl sm:text-2xl md:text-3xl font-bold mb-4 leading-relaxed">
           فيسوز من شركة <span className="text-blue-600">Powerblu</span> التابعة لعلامة <span className="text-red-600">HONESTPRO</span> بمكرك براشلس Sans Charbon وبطاريتين 16.8 V
         </p>
-        <p className="text-red-600 text-3xl sm:text-4xl md:text-5xl font-bold animate-pulse">
-          6500 دج
-        </p>
+        <div className="inline-block bg-gradient-to-r from-red-500 to-red-600 px-8 py-4 rounded-xl shadow-2xl animate-pulse">
+          <p className="text-white text-4xl sm:text-5xl md:text-6xl font-black drop-shadow-lg">
+            6500 دج
+          </p>
+        </div>
       </div>
 
       <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
