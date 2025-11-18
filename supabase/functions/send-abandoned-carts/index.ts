@@ -31,15 +31,15 @@ serve(async (req) => {
       );
     }
 
-    // Find abandoned carts older than 1 hour that haven't been sent and order wasn't completed
-    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+    // Find abandoned carts older than 5 hours that haven't been sent and order wasn't completed
+    const fiveHoursAgo = new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString();
     
     const { data: abandonedCarts, error: fetchError } = await supabaseClient
       .from('abandoned_carts')
       .select('*')
       .eq('webhook_sent', false)
       .eq('order_completed', false)
-      .lt('created_at', oneHourAgo);
+      .lt('created_at', fiveHoursAgo);
 
     if (fetchError) {
       console.error('Error fetching abandoned carts:', fetchError);
