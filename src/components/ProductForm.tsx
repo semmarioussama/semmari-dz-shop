@@ -73,7 +73,7 @@ const ProductForm = ({
 
   // Send abandoned order webhook 1 minute after user leaves
   useEffect(() => {
-    const sendAbandonedWebhook = () => {
+    const sendAbandonedWebhook = async () => {
       // Only send if user started filling but didn't submit
       if (formStartedRef.current && !formSubmittedRef.current) {
         const selectedStateData = algerianStates.find(state => state.id === selectedState);
@@ -90,9 +90,14 @@ const ProductForm = ({
           abandonedAt: new Date().toISOString()
         };
 
-        // Use sendBeacon for reliable delivery
-        const webhookUrl = 'https://n8n-n8n.2ufl9p.easypanel.host/webhook-test/f0662916-6542-4ddb-a97b-fcd944ee5f19';
-        navigator.sendBeacon(webhookUrl, JSON.stringify(abandonedData));
+        // Use edge function for secure webhook delivery
+        try {
+          await supabase.functions.invoke('track-abandoned-order', {
+            body: abandonedData
+          });
+        } catch (error) {
+          console.error('Failed to track abandoned order:', error);
+        }
       }
     };
     const handleVisibilityChange = () => {
