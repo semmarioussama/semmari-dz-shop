@@ -41,13 +41,15 @@ const ProductForm = ({
   const [selectedState, setSelectedState] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [ttclid, setTtclid] = useState<string | null>(null);
+  const [formLoadTime] = useState(Date.now()); // Track when form loads
   const [formData, setFormData] = useState({
     fullName: "",
     phone: "",
     district: "",
     address: "",
     option: "option1",
-    deliveryMethod: "" as "" | "home" | "desk"
+    deliveryMethod: "" as "" | "home" | "desk",
+    website: "" // Honeypot field - should stay empty
   });
   
   // Capture TikTok Click ID from URL
@@ -166,6 +168,9 @@ const ProductForm = ({
           selectedOption: formData.option,
           quantity: quantity,
           deliveryMethod: validation.data.deliveryMethod,
+          website: formData.website, // Honeypot field
+          formLoadTime, // Time when form loaded
+          formSubmitTime: Date.now(), // Time when submitted
           ttclid: ttclid // Pass TikTok click ID
         }
       });
@@ -215,6 +220,18 @@ const ProductForm = ({
         <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 flex items-center gap-2">👇 أضف معلوماتك هنا للطلب:</h3>
 
         <div className="space-y-3 sm:space-y-4">
+          {/* Honeypot field - hidden from users, bots will fill it */}
+          <input
+            type="text"
+            name="website"
+            value={formData.website}
+            onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+            style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
+          
           <div>
             <Label htmlFor="fullName" className="flex items-center gap-2 text-sm sm:text-base">
               <User className="w-4 h-4" />

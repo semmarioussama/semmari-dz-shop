@@ -26,6 +26,9 @@ interface SanitizedData {
   selectedOption: string;
   quantity: number;
   deliveryMethod: string;
+  website?: string;
+  formLoadTime?: number;
+  formSubmitTime?: number;
   ttclid?: string;
 }
 
@@ -110,6 +113,21 @@ function validateAndSanitizeInput(data: any):
     errors.push('Delivery method is required');
   } else if (!['home', 'desk'].includes(data.deliveryMethod)) {
     errors.push('Invalid delivery method');
+  }
+
+  // Bot protection: Honeypot field check
+  if (data.website && data.website.trim().length > 0) {
+    console.log('Bot detected: Honeypot field filled');
+    errors.push('Invalid request');
+  }
+
+  // Bot protection: Time-based validation (form must be open for at least 3 seconds)
+  if (data.formLoadTime && data.formSubmitTime) {
+    const timeDiff = data.formSubmitTime - data.formLoadTime;
+    if (timeDiff < 3000) { // Less than 3 seconds
+      console.log(`Bot detected: Form submitted too quickly (${timeDiff}ms)`);
+      errors.push('Please take your time filling the form');
+    }
   }
 
   if (errors.length > 0) {
