@@ -5,7 +5,7 @@ import productDetails from "@/assets/product-main-new.webp";
 import productImage1 from "@/assets/LP_02.webp";
 import productImage2 from "@/assets/LP_03.webp";
 import productImage3 from "@/assets/LP_04.webp";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowUp } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 const ProductForm = lazy(() => import("@/components/ProductForm"));
@@ -137,6 +137,22 @@ const Index = () => {
                   WebkitTouchCallout: 'none',
                 } as React.CSSProperties}
               />
+            </div>
+
+            {/* Scroll to Form Button */}
+            <div className="mt-6 flex justify-center">
+              <button
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="group relative bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-lg font-bold text-lg shadow-lg animate-pulse hover:animate-none transition-all duration-300 hover:scale-105 active:scale-95"
+                aria-label="اشتري الآن - Scroll to form"
+              >
+                <span className="flex items-center gap-2">
+                  اشتري الآن
+                  <ArrowUp className="w-5 h-5 group-hover:translate-y-[-4px] transition-transform" />
+                </span>
+              </button>
             </div>
           </div>
 
