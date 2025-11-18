@@ -42,6 +42,7 @@ const ProductForm = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [ttclid, setTtclid] = useState<string | null>(null);
   const [formLoadTime] = useState(Date.now()); // Track when form loads
+  const [sessionId] = useState(() => crypto.randomUUID()); // Unique session ID
   const [formData, setFormData] = useState({
     fullName: "",
     phone: "",
@@ -66,12 +67,44 @@ const ProductForm = ({
   const abandonedTimerRef = useRef<number | null>(null);
   const selectedStateData = algerianStates.find(state => state.id === selectedState);
 
-  // Track when user starts filling the form
+  // Save form data to abandoned_carts table as user types
   useEffect(() => {
-    if (formData.fullName || formData.phone || selectedState || formData.district !== "" || formData.address !== "") {
+    const hasFormData = formData.fullName || formData.phone || selectedState || formData.district || formData.address;
+    
+    if (hasFormData) {
       formStartedRef.current = true;
+      
+      // Debounce to avoid too many updates
+      const timeoutId = setTimeout(async () => {
+        try {
+          const selectedStateData = algerianStates.find(state => state.id === selectedState);
+          
+          // Upsert to abandoned_carts table
+          await supabase
+            .from('abandoned_carts')
+            .upsert({
+              session_id: sessionId,
+              customer_name: formData.fullName || null,
+              phone: formData.phone || null,
+              state: selectedStateData?.name || null,
+              district: formData.district || null,
+              address: formData.address || null,
+              selected_option: formData.option,
+              quantity: quantity,
+              delivery_method: formData.deliveryMethod || null,
+              ttclid: ttclid,
+              updated_at: new Date().toISOString()
+            }, {
+              onConflict: 'session_id'
+            });
+        } catch (error) {
+          console.error('Error saving abandoned cart:', error);
+        }
+      }, 1000); // Wait 1 second after user stops typing
+      
+      return () => clearTimeout(timeoutId);
     }
-  }, [formData, selectedState]);
+  }, [formData, selectedState, quantity, sessionId, ttclid]);
 
   // Send abandoned order webhook 1 minute after user leaves
   useEffect(() => {
@@ -171,7 +204,8 @@ const ProductForm = ({
           website: formData.website, // Honeypot field
           formLoadTime, // Time when form loaded
           formSubmitTime: Date.now(), // Time when submitted
-          ttclid: ttclid // Pass TikTok click ID
+          ttclid: ttclid, // Pass TikTok click ID
+          sessionId: sessionId // Pass session ID to mark cart as completed
         }
       });
       if (error) {

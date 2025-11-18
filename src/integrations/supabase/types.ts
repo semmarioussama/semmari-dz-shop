@@ -14,6 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
+      abandoned_carts: {
+        Row: {
+          address: string | null
+          created_at: string
+          customer_name: string | null
+          delivery_method: string | null
+          district: string | null
+          id: string
+          order_completed: boolean | null
+          order_completed_at: string | null
+          phone: string | null
+          quantity: number | null
+          selected_option: string | null
+          session_id: string
+          state: string | null
+          ttclid: string | null
+          updated_at: string
+          webhook_sent: boolean | null
+          webhook_sent_at: string | null
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          customer_name?: string | null
+          delivery_method?: string | null
+          district?: string | null
+          id?: string
+          order_completed?: boolean | null
+          order_completed_at?: string | null
+          phone?: string | null
+          quantity?: number | null
+          selected_option?: string | null
+          session_id: string
+          state?: string | null
+          ttclid?: string | null
+          updated_at?: string
+          webhook_sent?: boolean | null
+          webhook_sent_at?: string | null
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          customer_name?: string | null
+          delivery_method?: string | null
+          district?: string | null
+          id?: string
+          order_completed?: boolean | null
+          order_completed_at?: string | null
+          phone?: string | null
+          quantity?: number | null
+          selected_option?: string | null
+          session_id?: string
+          state?: string | null
+          ttclid?: string | null
+          updated_at?: string
+          webhook_sent?: boolean | null
+          webhook_sent_at?: string | null
+        }
+        Relationships: []
+      }
       documents: {
         Row: {
           content: string | null

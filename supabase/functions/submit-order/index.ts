@@ -30,6 +30,7 @@ interface SanitizedData {
   formLoadTime?: number;
   formSubmitTime?: number;
   ttclid?: string;
+  sessionId?: string;
 }
 
 // Hash function for user identifiers
@@ -245,6 +246,23 @@ serve(async (req) => {
     }
 
     console.log('Order stored:', orderReference, 'status: pending');
+
+    // Mark abandoned cart as completed if session ID provided
+    if (sanitizedData.sessionId) {
+      const { error: cartError } = await supabase
+        .from('abandoned_carts')
+        .update({
+          order_completed: true,
+          order_completed_at: new Date().toISOString()
+        })
+        .eq('session_id', sanitizedData.sessionId);
+      
+      if (cartError) {
+        console.error('Error updating abandoned cart:', cartError);
+      } else {
+        console.log('Marked abandoned cart as completed:', sanitizedData.sessionId);
+      }
+    }
 
     // Send TikTok conversion event server-side
     const tiktokPixelId = Deno.env.get('TIKTOK_PIXEL_ID');
