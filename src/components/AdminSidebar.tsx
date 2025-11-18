@@ -1,4 +1,4 @@
-import { Package, LogOut } from "lucide-react";
+import { Package, LogOut, ShoppingCart } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   Sidebar,
@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 
 const items = [
   { title: "إدارة المنتجات", url: "/admin/products", icon: Package },
+  { title: "إدارة الطلبات", url: "/admin/orders", icon: ShoppingCart },
 ];
 
 export function AdminSidebar() {
