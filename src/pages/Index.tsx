@@ -28,6 +28,16 @@ const Index = () => {
   return <div className="min-h-screen bg-background">
       <Header />
 
+      {/* Product Title and Price */}
+      <div className="container mx-auto px-3 sm:px-4 py-6 text-center">
+        <p className="text-foreground text-xl sm:text-2xl md:text-3xl font-bold mb-4 leading-relaxed">
+          فيسوز من شركة Powerblu التابعة لعلامة HONESTPRO بمكرك براشلس Sans Charbon وبطاريتين 16.8 V
+        </p>
+        <p className="text-red-600 text-3xl sm:text-4xl md:text-5xl font-bold animate-pulse">
+          6500 دج
+        </p>
+      </div>
+
       <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
         <div className="grid md:grid-cols-2 gap-4 sm:gap-8 max-w-6xl mx-auto bg-slate-50 rounded-none">
           {/* Order Form - Left Side */}
