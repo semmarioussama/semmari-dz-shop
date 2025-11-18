@@ -226,7 +226,7 @@ serve(async (req) => {
       );
     }
 
-    console.log('Order stored successfully:', orderReference);
+    console.log('Order stored:', orderReference, 'status: pending');
 
     // Send TikTok conversion event server-side
     const tiktokPixelId = Deno.env.get('TIKTOK_PIXEL_ID');
@@ -270,7 +270,7 @@ serve(async (req) => {
         }]
       };
 
-      console.log('Sending TikTok conversion event:', orderReference, 'with ttclid:', sanitizedData.ttclid || 'none');
+      console.log('Sending TikTok conversion event:', orderReference);
 
       fetch('https://business-api.tiktok.com/open_api/v1.3/event/track/', {
         method: 'POST',
@@ -280,50 +280,45 @@ serve(async (req) => {
         },
         body: JSON.stringify(tiktokEventPayload)
       }).then(response => {
-        console.log('TikTok API response status:', response.status);
-        return response.json();
-      }).then(data => {
-        console.log('TikTok API response:', JSON.stringify(data));
+        console.log('TikTok event tracked:', orderReference, 'status:', response.status);
       }).catch(error => {
-        console.error('TikTok API call failed:', error.message);
+        console.error('TikTok API error for order:', orderReference);
       });
     } else {
       console.warn('TikTok credentials not configured');
     }
 
     // Send to webhook asynchronously
-    const webhookUrl = 'https://n8n-n8n.2ufl9p.easypanel.host/webhook/c9977864-c285-4720-8a74-799d52258dfd';
-    const webhookPayload = {
-      orderReference,
-      productName: sanitizedData.productName,
-      fullName: sanitizedData.fullName,
-      phone: sanitizedData.phone,
-      state: sanitizedData.state,
-      stateId: sanitizedData.stateId,
-      district: sanitizedData.district,
-      address: sanitizedData.address,
-      selectedOption: sanitizedData.selectedOption,
-      quantity: sanitizedData.quantity,
-      deliveryMethod: sanitizedData.deliveryMethod,
-      timestamp: new Date().toISOString()
-    };
+    const webhookUrl = Deno.env.get('N8N_WEBHOOK_URL');
+    if (webhookUrl) {
+      const webhookPayload = {
+        orderReference,
+        productName: sanitizedData.productName,
+        fullName: sanitizedData.fullName,
+        phone: sanitizedData.phone,
+        state: sanitizedData.state,
+        stateId: sanitizedData.stateId,
+        district: sanitizedData.district,
+        address: sanitizedData.address,
+        selectedOption: sanitizedData.selectedOption,
+        quantity: sanitizedData.quantity,
+        deliveryMethod: sanitizedData.deliveryMethod,
+        timestamp: new Date().toISOString()
+      };
 
-    console.log('Sending to webhook:', webhookUrl);
-    console.log('Webhook payload:', JSON.stringify(webhookPayload));
-    
-    // Don't wait for webhook response to avoid blocking the user
-    fetch(webhookUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(webhookPayload)
-    }).then(response => {
-      console.log('Webhook response status:', response.status);
-      return response.text();
-    }).then(body => {
-      console.log('Webhook response body:', body);
-    }).catch(error => {
-      console.error('Webhook call failed:', error.message);
-    });
+      console.log('Sending webhook for order:', orderReference);
+      
+      // Don't wait for webhook response to avoid blocking the user
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(webhookPayload)
+      }).then(response => {
+        console.log('Webhook sent, status:', response.status);
+      }).catch(error => {
+        console.error('Webhook delivery failed for order:', orderReference);
+      });
+    }
 
     // Return success response immediately
     return new Response(
