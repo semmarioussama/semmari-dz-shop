@@ -376,7 +376,29 @@ const ProductForm = ({
             </div>
           </div>
 
-          <Button 
+          {/* Order Summary */}
+          <div className="bg-muted/50 rounded-lg p-4 space-y-2 border border-border">
+            <h3 className="font-semibold text-base mb-3 text-foreground">ملخص الطلب</h3>
+            
+            <div className="flex justify-between text-sm">
+              <span className="text-muted-foreground">السعر ({quantity} × 6,500 دج)</span>
+              <span className="font-medium text-foreground">{(quantity * 6500).toLocaleString('ar-DZ')} دج</span>
+            </div>
+            
+            <div className="flex justify-between text-sm">
+              <span className="text-muted-foreground">تكلفة التوصيل</span>
+              <span className="font-medium text-foreground">---</span>
+            </div>
+            
+            <div className="border-t border-border pt-2 mt-2">
+              <div className="flex justify-between items-center">
+                <span className="font-semibold text-base text-foreground">المجموع</span>
+                <span className="font-bold text-lg text-primary">{(quantity * 6500).toLocaleString('ar-DZ')} دج</span>
+              </div>
+            </div>
+          </div>
+
+          <Button
             type="submit" 
             size="lg" 
             disabled={isSubmitting} 
