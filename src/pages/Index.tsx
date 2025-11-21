@@ -39,9 +39,9 @@ const Index = () => {
       </div>
 
       <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
-        <div className="grid md:grid-cols-2 gap-4 sm:gap-8 max-w-6xl mx-auto bg-slate-50 rounded-none">
-          {/* Order Form - Left Side */}
-          <div className="order-2 md:order-1">
+        <div className="max-w-2xl mx-auto">
+          {/* Order Form */}
+          <div>
             {/* Indicator for images below */}
             <div className="flex items-center justify-center gap-1 sm:gap-2 mb-4 sm:mb-6 px-2">
               <ChevronDown className="text-red-600 animate-bounce" size={24} strokeWidth={3} />
@@ -163,12 +163,6 @@ const Index = () => {
                   <ArrowUp className="w-5 h-5 group-hover:translate-y-[-4px] transition-transform" />
                 </span>
               </button>
-            </div>
-          </div>
-
-          {/* Product Info - Right Side */}
-          <div className="order-1 md:order-2 space-y-3 sm:space-y-4">
-            <div className="md:sticky md:top-4">
             </div>
           </div>
         </div>
