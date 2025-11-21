@@ -1,14 +1,12 @@
-import { lazy, Suspense, useEffect } from "react";
+import { useEffect } from "react";
 import Header from "@/components/Header";
-import { Skeleton } from "@/components/ui/skeleton";
+import ProductForm from "@/components/ProductForm";
 import productDetails from "@/assets/product-main-new.webp";
 import productImage1 from "@/assets/LP_02.webp";
 import productImage2 from "@/assets/LP_03.webp";
 import productImage3 from "@/assets/LP_04.webp";
 import { ChevronDown, ArrowUp } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-
-const ProductForm = lazy(() => import("@/components/ProductForm"));
 
 const Index = () => {
   // Track page visit
@@ -49,9 +47,7 @@ const Index = () => {
               <ChevronDown className="text-red-600 animate-bounce" size={24} strokeWidth={3} />
             </div>
             
-            <Suspense fallback={<Skeleton className="h-[600px] w-full" />}>
-              <ProductForm productName="سماعة بلوتوث لاسلكية: صوت نقي وجودة عالية" />
-            </Suspense>
+            <ProductForm productName="سماعة بلوتوث لاسلكية: صوت نقي وجودة عالية" />
             
             <div className="relative">
               {/* Transparent overlay to prevent direct interaction */}
