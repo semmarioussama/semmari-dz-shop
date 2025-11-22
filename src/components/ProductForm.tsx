@@ -305,7 +305,7 @@ const ProductForm = ({
           <div>
             <Label htmlFor="state">🏙️ الولاية</Label>
             <Select value={selectedState} onValueChange={setSelectedState}>
-              <SelectTrigger className="mt-1">
+              <SelectTrigger className="mt-1 h-12 sm:h-10 text-base">
                 <SelectValue placeholder="اختر الولاية" />
               </SelectTrigger>
               <SelectContent>
@@ -322,7 +322,7 @@ const ProductForm = ({
             ...formData,
             district: value
           })} disabled={!selectedState}>
-              <SelectTrigger className="mt-1">
+              <SelectTrigger className="mt-1 h-12 sm:h-10 text-base">
                 <SelectValue placeholder="اختر البلدية" />
               </SelectTrigger>
               <SelectContent>
