@@ -16,6 +16,7 @@ declare global {
 
 import { Minus, Plus, User, Phone, Loader2 } from "lucide-react";
 import { algerianStates } from "@/data/algerianLocations";
+import { deliveryTariffs } from "@/data/deliveryTariffs";
 import { toast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
@@ -387,13 +388,30 @@ const ProductForm = ({
             
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">تكلفة التوصيل</span>
-              <span className="font-medium text-foreground">---</span>
+              <span className="font-medium text-foreground">
+                {(() => {
+                  if (!selectedState || !formData.deliveryMethod) return '---';
+                  const tariff = deliveryTariffs.find(t => t.stateId === selectedState);
+                  if (!tariff) return '---';
+                  const deliveryCost = formData.deliveryMethod === 'home' ? tariff.homePrice : tariff.deskPrice;
+                  return `${deliveryCost.toLocaleString('ar-DZ')} دج`;
+                })()}
+              </span>
             </div>
             
             <div className="border-t border-border pt-2 mt-2">
               <div className="flex justify-between items-center">
                 <span className="font-semibold text-base text-foreground">المجموع</span>
-                <span className="font-bold text-lg text-primary">{(quantity * 6500).toLocaleString('ar-DZ')} دج</span>
+                <span className="font-bold text-lg text-red-600">
+                  {(() => {
+                    const itemsTotal = quantity * 6500;
+                    if (!selectedState || !formData.deliveryMethod) return `${itemsTotal.toLocaleString('ar-DZ')} دج`;
+                    const tariff = deliveryTariffs.find(t => t.stateId === selectedState);
+                    if (!tariff) return `${itemsTotal.toLocaleString('ar-DZ')} دج`;
+                    const deliveryCost = formData.deliveryMethod === 'home' ? tariff.homePrice : tariff.deskPrice;
+                    return `${(itemsTotal + deliveryCost).toLocaleString('ar-DZ')} دج`;
+                  })()}
+                </span>
               </div>
             </div>
           </div>
