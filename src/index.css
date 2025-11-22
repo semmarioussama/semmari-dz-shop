@@ -104,11 +104,21 @@ All colors MUST be HSL.
 
   html {
     font-size: 20px;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
   body {
     @apply bg-background text-foreground;
     font-family: 'Cairo', sans-serif;
     direction: rtl;
+    overflow-x: hidden;
+    max-width: 100vw;
+    position: relative;
+  }
+  
+  /* Fix for mobile select dropdowns */
+  [data-radix-popper-content-wrapper] {
+    z-index: 9999 !important;
   }
 }
