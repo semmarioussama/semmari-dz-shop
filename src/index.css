@@ -110,5 +110,6 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
     font-family: 'Cairo', sans-serif;
     direction: rtl;
+    overflow-x: hidden;
   }
 }
