@@ -25,7 +25,7 @@ const Index = () => {
     trackVisit();
   }, []);
 
-  return <div className="min-h-screen bg-background overflow-x-hidden">
+  return <div className="min-h-screen bg-background">
       <Header />
 
       {/* Product Title and Price */}
@@ -38,7 +38,7 @@ const Index = () => {
         </p>
       </div>
 
-      <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 overflow-x-hidden">
+      <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 max-w-full overflow-x-clip">
         <div className="grid md:grid-cols-2 gap-4 sm:gap-8 max-w-6xl mx-auto bg-slate-50 rounded-none w-full">
           {/* Order Form - Left Side */}
           <div className="order-2 md:order-1">
