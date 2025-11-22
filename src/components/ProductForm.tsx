@@ -16,7 +16,6 @@ declare global {
 
 import { Minus, Plus, User, Phone, Loader2 } from "lucide-react";
 import { algerianStates } from "@/data/algerianLocations";
-import { deliveryTariffs } from "@/data/deliveryTariffs";
 import { toast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
@@ -308,7 +307,7 @@ const ProductForm = ({
               <SelectTrigger className="mt-1">
                 <SelectValue placeholder="اختر الولاية" />
               </SelectTrigger>
-              <SelectContent position="item-aligned" align="start" className="max-w-[calc(100vw-2rem)]">
+              <SelectContent>
                 {algerianStates.map(state => <SelectItem key={state.id} value={state.id}>
                     {state.id}- {state.name}
                   </SelectItem>)}
@@ -325,7 +324,7 @@ const ProductForm = ({
               <SelectTrigger className="mt-1">
                 <SelectValue placeholder="اختر البلدية" />
               </SelectTrigger>
-              <SelectContent position="item-aligned" align="start" className="max-w-[calc(100vw-2rem)]">
+              <SelectContent>
                 {selectedStateData?.districts.map(district => <SelectItem key={district.id} value={district.id}>
                     {district.name}
                   </SelectItem>)}
@@ -357,7 +356,7 @@ const ProductForm = ({
               <SelectTrigger className="mt-1 h-11 sm:h-10 text-base">
                 <SelectValue placeholder="اختر طريقة التوصيل" />
               </SelectTrigger>
-              <SelectContent position="item-aligned" align="start" className="max-w-[calc(100vw-2rem)]">
+              <SelectContent>
                 <SelectItem value="home" className="text-base py-3">توصيل إلى المنزل</SelectItem>
                 <SelectItem value="desk" className="text-base py-3">توصيل إلى المكتب</SelectItem>
               </SelectContent>
@@ -388,30 +387,13 @@ const ProductForm = ({
             
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">تكلفة التوصيل</span>
-              <span className="font-medium text-foreground">
-                {(() => {
-                  if (!selectedState || !formData.deliveryMethod) return '---';
-                  const tariff = deliveryTariffs.find(t => t.stateId === selectedState);
-                  if (!tariff) return '---';
-                  const deliveryCost = formData.deliveryMethod === 'home' ? tariff.homePrice : tariff.deskPrice;
-                  return `${deliveryCost.toLocaleString('ar-DZ')} دج`;
-                })()}
-              </span>
+              <span className="font-medium text-foreground">---</span>
             </div>
             
             <div className="border-t border-border pt-2 mt-2">
               <div className="flex justify-between items-center">
                 <span className="font-semibold text-base text-foreground">المجموع</span>
-                <span className="font-bold text-lg text-red-600">
-                  {(() => {
-                    const itemsTotal = quantity * 6500;
-                    if (!selectedState || !formData.deliveryMethod) return `${itemsTotal.toLocaleString('ar-DZ')} دج`;
-                    const tariff = deliveryTariffs.find(t => t.stateId === selectedState);
-                    if (!tariff) return `${itemsTotal.toLocaleString('ar-DZ')} دج`;
-                    const deliveryCost = formData.deliveryMethod === 'home' ? tariff.homePrice : tariff.deskPrice;
-                    return `${(itemsTotal + deliveryCost).toLocaleString('ar-DZ')} دج`;
-                  })()}
-                </span>
+                <span className="font-bold text-lg text-red-600">{(quantity * 6500).toLocaleString('ar-DZ')} دج</span>
               </div>
             </div>
           </div>

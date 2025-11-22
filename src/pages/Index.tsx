@@ -38,8 +38,8 @@ const Index = () => {
         </p>
       </div>
 
-      <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 max-w-full overflow-x-clip">
-        <div className="grid md:grid-cols-2 gap-4 sm:gap-8 max-w-6xl mx-auto bg-slate-50 rounded-none w-full">
+      <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
+        <div className="grid md:grid-cols-2 gap-4 sm:gap-8 max-w-6xl mx-auto bg-slate-50 rounded-none">
           {/* Order Form - Left Side */}
           <div className="order-2 md:order-1">
             {/* Indicator for images below */}
