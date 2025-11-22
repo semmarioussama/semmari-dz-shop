@@ -308,7 +308,7 @@ const ProductForm = ({
               <SelectTrigger className="mt-1">
                 <SelectValue placeholder="اختر الولاية" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent position="item-aligned" align="start" className="max-w-[calc(100vw-2rem)]">
                 {algerianStates.map(state => <SelectItem key={state.id} value={state.id}>
                     {state.id}- {state.name}
                   </SelectItem>)}
@@ -325,7 +325,7 @@ const ProductForm = ({
               <SelectTrigger className="mt-1">
                 <SelectValue placeholder="اختر البلدية" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent position="item-aligned" align="start" className="max-w-[calc(100vw-2rem)]">
                 {selectedStateData?.districts.map(district => <SelectItem key={district.id} value={district.id}>
                     {district.name}
                   </SelectItem>)}
@@ -357,7 +357,7 @@ const ProductForm = ({
               <SelectTrigger className="mt-1 h-11 sm:h-10 text-base">
                 <SelectValue placeholder="اختر طريقة التوصيل" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent position="item-aligned" align="start" className="max-w-[calc(100vw-2rem)]">
                 <SelectItem value="home" className="text-base py-3">توصيل إلى المنزل</SelectItem>
                 <SelectItem value="desk" className="text-base py-3">توصيل إلى المكتب</SelectItem>
               </SelectContent>
