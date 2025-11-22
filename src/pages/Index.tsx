@@ -23,7 +23,7 @@ const Index = () => {
     trackVisit();
   }, []);
 
-  return <div className="min-h-screen bg-background overflow-x-hidden">
+  return <div className="min-h-screen bg-background overflow-x-hidden max-w-[100vw]">
       <Header />
 
       {/* Product Title and Price */}
@@ -39,7 +39,7 @@ const Index = () => {
       <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
         <div className="max-w-2xl mx-auto">
           {/* Order Form */}
-          <div>
+          <div id="order-form">
             {/* Indicator for images below */}
             <div className="flex items-center justify-center gap-1 sm:gap-2 mb-4 sm:mb-6 px-2">
               <ChevronDown className="text-red-600 animate-bounce" size={24} strokeWidth={3} />
@@ -148,7 +148,10 @@ const Index = () => {
             <div className="mt-6 flex justify-center">
               <button
                 onClick={() => {
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  const formElement = document.getElementById('order-form');
+                  if (formElement) {
+                    formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
                 }}
                 className="group relative bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-lg font-bold text-lg shadow-lg animate-pulse hover:animate-none transition-all duration-300 hover:scale-105 active:scale-95"
                 aria-label="اشتري الآن - Scroll to form"
