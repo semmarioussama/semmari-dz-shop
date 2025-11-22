@@ -2,8 +2,8 @@ import logo from "@/assets/logo.svg";
 import { Link } from "react-router-dom";
 import { Lock } from "lucide-react";
 const Header = () => {
-  return <header className="bg-card border-b overflow-x-hidden">
-      <div className="container py-4 mx-auto px-4 max-w-full">
+  return <header className="bg-card border-b">
+      <div className="container py-4 mx-0 px-[16px] my-0">
         <div className="flex items-center justify-between">
           <div className="w-8" /> {/* Spacer for centering */}
           <img src={logo} alt="Teacher's Nest Logo" className="h-16 w-auto" />
