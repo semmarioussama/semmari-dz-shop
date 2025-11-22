@@ -31,7 +31,7 @@ const Index = () => {
       {/* Product Title and Price */}
       <div className="container mx-auto px-3 sm:px-4 py-6 text-center max-w-full">
         <p className="text-foreground text-xl sm:text-2xl md:text-3xl font-bold mb-4 leading-relaxed">
-          فيسوز من شركة <span className="text-blue-600">Powerblu</span> التابعة لعلامة <span className="text-red-600">HONESTPRO</span> بمحرك براشلس Sans Charbon وبطاريتين 16.8 V
+          فيسوز من شركة <span className="text-blue-600">POWERBLU</span> التابعة لعلامة <span className="text-red-600">HONESTPRO</span> بمحرك براشلس Sans Charbon وبطاريتين 16.8 V
         </p>
         <p className="text-red-600 text-3xl sm:text-4xl md:text-5xl font-bold animate-pulse">
           6500 دج
