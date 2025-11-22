@@ -393,7 +393,7 @@ const ProductForm = ({
             <div className="border-t border-border pt-2 mt-2">
               <div className="flex justify-between items-center">
                 <span className="font-semibold text-base text-foreground">المجموع</span>
-                <span className="font-bold text-lg text-red-600">{(quantity * 6500).toLocaleString('ar-DZ')} دج</span>
+                <span className="font-bold text-lg text-primary">{(quantity * 6500).toLocaleString('ar-DZ')} دج</span>
               </div>
             </div>
           </div>
