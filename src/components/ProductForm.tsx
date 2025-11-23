@@ -350,18 +350,44 @@ const ProductForm = ({
 
           <div>
             <Label htmlFor="deliveryMethod" className="text-sm sm:text-base">🚚 طريقة التوصيل</Label>
-            <Select value={formData.deliveryMethod} onValueChange={(value: "home" | "desk") => setFormData({
-              ...formData,
-              deliveryMethod: value
-            })}>
+            <Select value={formData.deliveryMethod} onValueChange={(value: "home" | "desk") => {
+              const tariff = deliveryTariffs.find(t => t.stateId === selectedState);
+              if (value === 'desk' && tariff && tariff.deskPrice === 0) {
+                return; // Prevent selecting desk if not available
+              }
+              setFormData({
+                ...formData,
+                deliveryMethod: value
+              });
+            }}>
               <SelectTrigger className="mt-1 h-11 sm:h-10 text-base">
                 <SelectValue placeholder="اختر طريقة التوصيل" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="home" className="text-base py-3">توصيل إلى المنزل</SelectItem>
-                <SelectItem value="desk" className="text-base py-3">توصيل إلى المكتب</SelectItem>
+                <SelectItem 
+                  value="desk" 
+                  className="text-base py-3"
+                  disabled={(() => {
+                    const tariff = deliveryTariffs.find(t => t.stateId === selectedState);
+                    return tariff ? tariff.deskPrice === 0 : false;
+                  })()}
+                >
+                  توصيل إلى المكتب
+                  {(() => {
+                    const tariff = deliveryTariffs.find(t => t.stateId === selectedState);
+                    return tariff && tariff.deskPrice === 0 ? ' (غير متوفر)' : '';
+                  })()}
+                </SelectItem>
               </SelectContent>
             </Select>
+            {(() => {
+              const tariff = deliveryTariffs.find(t => t.stateId === selectedState);
+              if (tariff && tariff.deskPrice === 0 && selectedState) {
+                return <p className="text-sm text-amber-600 mt-1">⚠️ التوصيل إلى المكتب غير متوفر في هذه الولاية. متوفر فقط التوصيل إلى المنزل.</p>;
+              }
+              return null;
+            })()}
           </div>
 
           <div className="flex flex-col items-center gap-2 pt-2">
@@ -394,6 +420,7 @@ const ProductForm = ({
                   const tariff = deliveryTariffs.find(t => t.stateId === selectedState);
                   if (!tariff) return '---';
                   const deliveryCost = formData.deliveryMethod === 'home' ? tariff.homePrice : tariff.deskPrice;
+                  if (deliveryCost === 0) return 'غير متوفر';
                   return `${deliveryCost.toLocaleString('ar-DZ')} دج`;
                 })()}
               </span>
@@ -409,6 +436,7 @@ const ProductForm = ({
                     const tariff = deliveryTariffs.find(t => t.stateId === selectedState);
                     if (!tariff) return `${itemsTotal.toLocaleString('ar-DZ')} دج`;
                     const deliveryCost = formData.deliveryMethod === 'home' ? tariff.homePrice : tariff.deskPrice;
+                    if (deliveryCost === 0) return '---';
                     return `${(itemsTotal + deliveryCost).toLocaleString('ar-DZ')} دج`;
                   })()}
                 </span>
