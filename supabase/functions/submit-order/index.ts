@@ -393,6 +393,11 @@ serve(async (req) => {
       const tariff = deliveryTariffs.find(t => t.stateId === sanitizedData.stateId);
       const homeDeliveryPrice = tariff?.homePrice || 0;
       const deskDeliveryPrice = tariff?.deskPrice || 0;
+      
+      // Calculate total amount
+      const productPrice = 2990;
+      const selectedDeliveryPrice = sanitizedData.deliveryMethod === 'home' ? homeDeliveryPrice : deskDeliveryPrice;
+      const totalAmount = (productPrice * sanitizedData.quantity) + selectedDeliveryPrice;
 
       const webhookPayload = {
         orderReference,
@@ -408,6 +413,7 @@ serve(async (req) => {
         deliveryMethod: sanitizedData.deliveryMethod,
         homeDeliveryPrice,
         deskDeliveryPrice,
+        totalAmount,
         timestamp: new Date().toISOString()
       };
 
