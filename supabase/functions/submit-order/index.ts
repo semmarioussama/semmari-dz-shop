@@ -14,6 +14,68 @@ const MAX_REQUESTS_PER_WINDOW = 5;
 // Phone validation regex for Algerian numbers
 const ALGERIAN_PHONE_REGEX = /^(00213|\+213|0)(5|6|7)[0-9]{8}$/;
 
+// Delivery tariffs data
+const deliveryTariffs = [
+  { stateId: "01", deskPrice: 400, homePrice: 600 },
+  { stateId: "02", deskPrice: 500, homePrice: 850 },
+  { stateId: "03", deskPrice: 650, homePrice: 950 },
+  { stateId: "04", deskPrice: 600, homePrice: 950 },
+  { stateId: "05", deskPrice: 650, homePrice: 950 },
+  { stateId: "06", deskPrice: 450, homePrice: 850 },
+  { stateId: "07", deskPrice: 650, homePrice: 950 },
+  { stateId: "08", deskPrice: 650, homePrice: 950 },
+  { stateId: "09", deskPrice: 450, homePrice: 850 },
+  { stateId: "10", deskPrice: 450, homePrice: 850 },
+  { stateId: "11", deskPrice: 650, homePrice: 950 },
+  { stateId: "12", deskPrice: 650, homePrice: 950 },
+  { stateId: "13", deskPrice: 650, homePrice: 950 },
+  { stateId: "14", deskPrice: 650, homePrice: 950 },
+  { stateId: "15", deskPrice: 650, homePrice: 950 },
+  { stateId: "16", deskPrice: 400, homePrice: 600 },
+  { stateId: "17", deskPrice: 450, homePrice: 850 },
+  { stateId: "18", deskPrice: 650, homePrice: 950 },
+  { stateId: "19", deskPrice: 600, homePrice: 850 },
+  { stateId: "20", deskPrice: 650, homePrice: 950 },
+  { stateId: "21", deskPrice: 650, homePrice: 950 },
+  { stateId: "22", deskPrice: 650, homePrice: 950 },
+  { stateId: "23", deskPrice: 650, homePrice: 950 },
+  { stateId: "24", deskPrice: 650, homePrice: 950 },
+  { stateId: "25", deskPrice: 450, homePrice: 850 },
+  { stateId: "26", deskPrice: 450, homePrice: 850 },
+  { stateId: "27", deskPrice: 650, homePrice: 950 },
+  { stateId: "28", deskPrice: 450, homePrice: 850 },
+  { stateId: "29", deskPrice: 650, homePrice: 950 },
+  { stateId: "30", deskPrice: 650, homePrice: 950 },
+  { stateId: "31", deskPrice: 650, homePrice: 950 },
+  { stateId: "32", deskPrice: 650, homePrice: 950 },
+  { stateId: "33", deskPrice: 650, homePrice: 950 },
+  { stateId: "34", deskPrice: 450, homePrice: 850 },
+  { stateId: "35", deskPrice: 450, homePrice: 600 },
+  { stateId: "36", deskPrice: 450, homePrice: 850 },
+  { stateId: "37", deskPrice: 0, homePrice: 1650 },
+  { stateId: "38", deskPrice: 450, homePrice: 850 },
+  { stateId: "39", deskPrice: 500, homePrice: 950 },
+  { stateId: "40", deskPrice: 450, homePrice: 850 },
+  { stateId: "41", deskPrice: 450, homePrice: 850 },
+  { stateId: "42", deskPrice: 450, homePrice: 850 },
+  { stateId: "43", deskPrice: 650, homePrice: 950 },
+  { stateId: "44", deskPrice: 450, homePrice: 850 },
+  { stateId: "45", deskPrice: 600, homePrice: 950 },
+  { stateId: "46", deskPrice: 450, homePrice: 850 },
+  { stateId: "47", deskPrice: 450, homePrice: 950 },
+  { stateId: "48", deskPrice: 450, homePrice: 850 },
+  { stateId: "49", deskPrice: 0, homePrice: 1650 },
+  { stateId: "50", deskPrice: 0, homePrice: 1600 },
+  { stateId: "51", deskPrice: 600, homePrice: 1000 },
+  { stateId: "52", deskPrice: 0, homePrice: 1300 },
+  { stateId: "53", deskPrice: 1000, homePrice: 2000 },
+  { stateId: "54", deskPrice: 0, homePrice: 1500 },
+  { stateId: "55", deskPrice: 700, homePrice: 1100 },
+  { stateId: "56", deskPrice: 1000, homePrice: 2000 },
+  { stateId: "57", deskPrice: 600, homePrice: 1100 },
+  { stateId: "58", deskPrice: 0, homePrice: 950 },
+];
+
 // Input validation and sanitization
 interface SanitizedData {
   productName: string;
@@ -327,6 +389,11 @@ serve(async (req) => {
     // Send to webhook asynchronously
     const webhookUrl = Deno.env.get('N8N_WEBHOOK_URL');
     if (webhookUrl) {
+      // Find delivery prices for the state
+      const tariff = deliveryTariffs.find(t => t.stateId === sanitizedData.stateId);
+      const homeDeliveryPrice = tariff?.homePrice || 0;
+      const deskDeliveryPrice = tariff?.deskPrice || 0;
+
       const webhookPayload = {
         orderReference,
         productName: sanitizedData.productName,
@@ -339,6 +406,8 @@ serve(async (req) => {
         selectedOption: sanitizedData.selectedOption,
         quantity: sanitizedData.quantity,
         deliveryMethod: sanitizedData.deliveryMethod,
+        homeDeliveryPrice,
+        deskDeliveryPrice,
         timestamp: new Date().toISOString()
       };
 
