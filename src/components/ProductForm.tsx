@@ -63,9 +63,6 @@ const ProductForm = ({
       setTtclid(clickId);
     }
   }, []);
-  const formSubmittedRef = useRef(false);
-  const formStartedRef = useRef(false);
-  const abandonedTimerRef = useRef<number | null>(null);
   const selectedStateData = algerianStates.find(state => state.id === selectedState);
 
   // Save form data to abandoned_carts table as user types
@@ -73,8 +70,6 @@ const ProductForm = ({
     const hasFormData = formData.fullName || formData.phone || selectedState || formData.district || formData.address;
     
     if (hasFormData) {
-      formStartedRef.current = true;
-      
       // Debounce to avoid too many updates
       const timeoutId = setTimeout(async () => {
         try {
@@ -106,59 +101,6 @@ const ProductForm = ({
       return () => clearTimeout(timeoutId);
     }
   }, [formData, selectedState, quantity, sessionId, ttclid]);
-
-  // Send abandoned order webhook 1 minute after user leaves
-  useEffect(() => {
-    const sendAbandonedWebhook = async () => {
-      // Only send if user started filling but didn't submit
-      if (formStartedRef.current && !formSubmittedRef.current) {
-        const selectedStateData = algerianStates.find(state => state.id === selectedState);
-        const selectedDistrictData = selectedStateData?.districts.find(district => district.id === formData.district);
-        const abandonedData = {
-          fullName: formData.fullName || null,
-          phone: formData.phone || null,
-          state: selectedStateData?.name || null,
-          stateId: selectedState || null,
-          district: selectedDistrictData?.name || null,
-          districtId: formData.district || null,
-          selectedOption: formData.option || null,
-          quantity: quantity,
-          abandonedAt: new Date().toISOString()
-        };
-
-        // Use edge function for secure webhook delivery
-        try {
-          await supabase.functions.invoke('track-abandoned-order', {
-            body: abandonedData
-          });
-        } catch (error) {
-          console.error('Failed to track abandoned order:', error);
-        }
-      }
-    };
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'hidden') {
-        // Start 1-minute timer when user leaves
-        abandonedTimerRef.current = window.setTimeout(() => {
-          sendAbandonedWebhook();
-        }, 60000); // 1 minute = 60000ms
-      } else if (document.visibilityState === 'visible') {
-        // Cancel timer if user returns
-        if (abandonedTimerRef.current !== null) {
-          clearTimeout(abandonedTimerRef.current);
-          abandonedTimerRef.current = null;
-        }
-      }
-    };
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      // Clear timer on cleanup
-      if (abandonedTimerRef.current !== null) {
-        clearTimeout(abandonedTimerRef.current);
-      }
-    };
-  }, [formData, selectedState, quantity]);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedState) {
@@ -215,9 +157,6 @@ const ProductForm = ({
       if (!data?.success) {
         throw new Error(data?.error || 'Failed to submit order');
       }
-
-      // Mark form as submitted to prevent abandoned order webhook
-      formSubmittedRef.current = true;
 
       // Track TikTok conversion BEFORE navigation
       if (window.ttq && typeof window.ttq.track === 'function') {
