@@ -158,26 +158,9 @@ const ProductForm = ({
         throw new Error(data?.error || 'Failed to submit order');
       }
 
-      // Track TikTok conversion BEFORE navigation
-      if (window.ttq && typeof window.ttq.track === 'function') {
-        try {
-          window.ttq.track('CompletePayment', {
-            content_id: data.orderReference,
-            content_name: productName,
-            value: 2990 * quantity,
-            currency: 'DZD'
-          });
-          console.log('✅ TikTok CompletePayment tracked before navigation:', data.orderReference);
-        } catch (error) {
-          console.error('❌ Error tracking TikTok event:', error);
-        }
-      }
-
-      // Small delay to ensure tracking fires before navigation
-      await new Promise(resolve => setTimeout(resolve, 300));
-
       // Navigate to thank you page with order reference, customer name, and phone
-      navigate(`/thank-you?ref=${data.orderReference}&name=${encodeURIComponent(validation.data.fullName)}&phone=${encodeURIComponent(validation.data.phone)}`);
+      // TikTok tracking will happen on thank-you page with proper phone formatting
+      navigate(`/thank-you?ref=${data.orderReference}&name=${encodeURIComponent(validation.data.fullName)}&phone=${encodeURIComponent(validation.data.phone)}&value=${6500 * quantity}`);
     } catch (error) {
       console.error("Error sending order:", error);
       toast({
