@@ -18,6 +18,16 @@ const ThankYou = () => {
   const navigate = useNavigate();
   const orderRef = searchParams.get("ref");
   const customerName = searchParams.get("name");
+  const customerPhone = searchParams.get("phone");
+
+  // Hash function for TikTok pixel (SHA-256)
+  const hashValue = async (value: string) => {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(value);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  };
 
   useEffect(() => {
     // Redirect to home if no order reference
@@ -27,16 +37,24 @@ const ThankYou = () => {
     }
 
     // Function to track conversion with retry logic
-    const trackConversion = (attempt = 1) => {
+    const trackConversion = async (attempt = 1) => {
       if (window.ttq && typeof window.ttq.track === 'function') {
         try {
-          window.ttq.track('CompletePayment', {
+          // Prepare event data with hashed phone if available
+          const eventData: any = {
             content_id: orderRef,
             content_name: 'سماعة بلوتوث لاسلكية',
             value: 2990,
             currency: 'DZD'
-          });
-          console.log('✅ TikTok CompletePayment tracked:', orderRef, 'Attempt:', attempt);
+          };
+
+          // Add hashed phone number if available (required by TikTok)
+          if (customerPhone) {
+            eventData.phone_number = await hashValue(customerPhone);
+          }
+
+          window.ttq.track('CompletePayment', eventData);
+          console.log('✅ TikTok CompletePayment tracked:', orderRef, 'Attempt:', attempt, 'With phone:', !!customerPhone);
         } catch (error) {
           console.error('❌ Error tracking TikTok event:', error);
         }

@@ -176,8 +176,8 @@ const ProductForm = ({
       // Small delay to ensure tracking fires before navigation
       await new Promise(resolve => setTimeout(resolve, 300));
 
-      // Navigate to thank you page with order reference and customer name
-      navigate(`/thank-you?ref=${data.orderReference}&name=${encodeURIComponent(validation.data.fullName)}`);
+      // Navigate to thank you page with order reference, customer name, and phone
+      navigate(`/thank-you?ref=${data.orderReference}&name=${encodeURIComponent(validation.data.fullName)}&phone=${encodeURIComponent(validation.data.phone)}`);
     } catch (error) {
       console.error("Error sending order:", error);
       toast({
