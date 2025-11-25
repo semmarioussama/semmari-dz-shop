@@ -19,14 +19,31 @@ const ThankYou = () => {
   const orderRef = searchParams.get("ref");
   const customerName = searchParams.get("name");
   const customerPhone = searchParams.get("phone");
+  const orderValue = searchParams.get("value") || "2990";
 
   // Hash function for TikTok pixel (SHA-256)
   const hashValue = async (value: string) => {
     const encoder = new TextEncoder();
-    const data = encoder.encode(value);
+    const data = encoder.encode(value.toLowerCase().trim());
     const hashBuffer = await crypto.subtle.digest('SHA-256', data);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  };
+
+  // Convert Algerian phone to international format
+  const formatPhoneInternational = (phone: string) => {
+    // Remove any spaces or special characters
+    const cleaned = phone.replace(/\D/g, '');
+    // If starts with 0, replace with +213
+    if (cleaned.startsWith('0')) {
+      return '+213' + cleaned.substring(1);
+    }
+    // If starts with 213, add +
+    if (cleaned.startsWith('213')) {
+      return '+' + cleaned;
+    }
+    // Otherwise assume it needs +213
+    return '+213' + cleaned;
   };
 
   useEffect(() => {
@@ -40,21 +57,23 @@ const ThankYou = () => {
     const trackConversion = async (attempt = 1) => {
       if (window.ttq && typeof window.ttq.track === 'function') {
         try {
-          // Prepare event data with hashed phone if available
+          // Prepare event data
           const eventData: any = {
             content_id: orderRef,
             content_name: 'سماعة بلوتوث لاسلكية',
-            value: 2990,
+            value: parseFloat(orderValue),
             currency: 'DZD'
           };
 
-          // Add hashed phone number if available (required by TikTok)
+          // Add hashed phone number in international format (required by TikTok)
           if (customerPhone) {
-            eventData.phone_number = await hashValue(customerPhone);
+            const internationalPhone = formatPhoneInternational(customerPhone);
+            eventData.phone_number = await hashValue(internationalPhone);
+            console.log('📱 Phone formatted:', customerPhone, '→', internationalPhone);
           }
 
           window.ttq.track('CompletePayment', eventData);
-          console.log('✅ TikTok CompletePayment tracked:', orderRef, 'Attempt:', attempt, 'With phone:', !!customerPhone);
+          console.log('✅ TikTok CompletePayment tracked:', orderRef, 'Value:', orderValue, 'Phone included:', !!customerPhone);
         } catch (error) {
           console.error('❌ Error tracking TikTok event:', error);
         }
