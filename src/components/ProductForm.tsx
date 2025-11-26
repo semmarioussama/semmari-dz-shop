@@ -4,16 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-
-// Declare TikTok Pixel type
-declare global {
-  interface Window {
-    ttq?: {
-      track: (event: string, data?: any) => void;
-    };
-  }
-}
-
+import "@/types/tiktok";
 import { Minus, Plus, User, Phone, Loader2 } from "lucide-react";
 import { algerianStates } from "@/data/algerianLocations";
 import { deliveryTariffs } from "@/data/deliveryTariffs";
