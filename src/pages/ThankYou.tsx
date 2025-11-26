@@ -3,15 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
-
-// Declare TikTok Pixel type
-declare global {
-  interface Window {
-    ttq?: {
-      track: (event: string, data?: any) => void;
-    };
-  }
-}
+import "@/types/tiktok";
 
 const ThankYou = () => {
   const [searchParams] = useSearchParams();
@@ -65,14 +57,17 @@ const ThankYou = () => {
             currency: 'DZD'
           };
 
-          // Add hashed phone number in international format (required by TikTok)
+          // Prepare Advanced Matching parameters (hashed user data)
+          const advancedMatchingData: any = {};
+          
           if (customerPhone) {
             const internationalPhone = formatPhoneInternational(customerPhone);
-            eventData.phone_number = await hashValue(internationalPhone);
+            advancedMatchingData.phone_number = await hashValue(internationalPhone);
             console.log('📱 Phone formatted:', customerPhone, '→', internationalPhone);
           }
 
-          window.ttq.track('CompletePayment', eventData);
+          // Track with Advanced Matching as third parameter
+          window.ttq.track('CompletePayment', eventData, advancedMatchingData);
           console.log('✅ TikTok CompletePayment tracked:', orderRef, 'Value:', orderValue, 'Phone included:', !!customerPhone);
         } catch (error) {
           console.error('❌ Error tracking TikTok event:', error);
