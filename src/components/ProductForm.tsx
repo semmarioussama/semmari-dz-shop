@@ -200,7 +200,7 @@ const ProductForm = ({
           <div>
             <Label htmlFor="phone" className="flex items-center gap-2 text-sm sm:text-base">
               <Phone className="w-4 h-4" />
-              رقم الهاتف
+              رقم الهاتف (رقم الواتساب)
             </Label>
             <Input 
               id="phone" 
