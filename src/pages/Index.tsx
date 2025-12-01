@@ -34,7 +34,7 @@ const Index = () => {
           فيسوز من شركة <span className="text-blue-600">POWERBLU</span> التابعة لعلامة <span className="text-red-600">HONESTPRO</span> بمحرك براشلس Sans Charbon وبطاريتين 16.8 V
         </p>
         <p className="text-red-600 text-3xl sm:text-4xl md:text-5xl font-bold animate-pulse">
-          6700 دج
+          6490 دج
         </p>
       </div>
 

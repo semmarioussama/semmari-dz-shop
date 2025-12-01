@@ -151,7 +151,7 @@ const ProductForm = ({
 
       // Navigate to thank you page with order reference, customer name, and phone
       // TikTok tracking will happen on thank-you page with proper phone formatting
-      navigate(`/thank-you?ref=${data.orderReference}&name=${encodeURIComponent(validation.data.fullName)}&phone=${encodeURIComponent(validation.data.phone)}&value=${6700 * quantity}`);
+      navigate(`/thank-you?ref=${data.orderReference}&name=${encodeURIComponent(validation.data.fullName)}&phone=${encodeURIComponent(validation.data.phone)}&value=${6490 * quantity}`);
     } catch (error) {
       console.error("Error sending order:", error);
       toast({
@@ -321,8 +321,8 @@ const ProductForm = ({
             <h3 className="font-semibold text-base mb-3 text-foreground">ملخص الطلب</h3>
             
             <div className="flex justify-between text-sm">
-              <span className="text-muted-foreground">السعر ({quantity} × 6,700 دج)</span>
-              <span className="font-medium text-foreground">{(quantity * 6700).toLocaleString('ar-DZ')} دج</span>
+              <span className="text-muted-foreground">السعر ({quantity} × 6,490 دج)</span>
+              <span className="font-medium text-foreground">{(quantity * 6490).toLocaleString('ar-DZ')} دج</span>
             </div>
             
             <div className="flex justify-between text-sm">
@@ -344,7 +344,7 @@ const ProductForm = ({
                 <span className="font-semibold text-base text-foreground">المجموع</span>
                 <span className="font-bold text-lg text-red-600">
                   {(() => {
-                    const itemsTotal = quantity * 6700;
+                    const itemsTotal = quantity * 6490;
                     if (!selectedState || !formData.deliveryMethod) return `${itemsTotal.toLocaleString('ar-DZ')} دج`;
                     const tariff = deliveryTariffs.find(t => t.stateId === selectedState);
                     if (!tariff) return `${itemsTotal.toLocaleString('ar-DZ')} دج`;
