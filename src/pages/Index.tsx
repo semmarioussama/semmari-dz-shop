@@ -33,8 +33,9 @@ const Index = () => {
         <p className="text-foreground text-xl sm:text-2xl md:text-3xl font-bold mb-4 leading-relaxed">
           فيسوز من شركة <span className="text-blue-600">POWERBLU</span> التابعة لعلامة <span className="text-red-600">HONESTPRO</span> بمحرك براشلس Sans Charbon وبطاريتين 16.8 V
         </p>
-        <p className="text-red-600 text-3xl sm:text-4xl md:text-5xl font-bold animate-pulse">
-          5,700 دج
+        <p className="text-3xl sm:text-4xl md:text-5xl font-bold animate-pulse flex items-center justify-center gap-3">
+          <span className="text-muted-foreground line-through text-2xl sm:text-3xl md:text-4xl">6,700 دج</span>
+          <span className="text-red-600">5,700 دج</span>
         </p>
       </div>
 
