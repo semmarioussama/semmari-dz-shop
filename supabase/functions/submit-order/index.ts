@@ -360,7 +360,7 @@ serve(async (req) => {
           properties: {
             content_id: orderReference,
             content_name: sanitizedData.productName,
-            value: 6350 * sanitizedData.quantity,
+            value: 5700 * sanitizedData.quantity,
             currency: 'DZD',
             quantity: sanitizedData.quantity
           },
@@ -395,7 +395,7 @@ serve(async (req) => {
       const deskDeliveryPrice = tariff?.deskPrice || 0;
       
       // Calculate total amount
-      const productPrice = 6350;
+      const productPrice = 5700;
       const selectedDeliveryPrice = sanitizedData.deliveryMethod === 'home' ? homeDeliveryPrice : deskDeliveryPrice;
       const totalAmount = (productPrice * sanitizedData.quantity) + selectedDeliveryPrice;
 
